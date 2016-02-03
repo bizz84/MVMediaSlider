@@ -29,16 +29,21 @@ extension UIView {
             self.translatesAutoresizingMaskIntoConstraints = false
             
             superview.addConstraints([
-                NSLayoutConstraint(item: self, attribute: .Left, relatedBy: .Equal, toItem: superview, attribute: .Left, multiplier: 1, constant: 0),
-                NSLayoutConstraint(item: self, attribute: .Top, relatedBy: .Equal, toItem: superview, attribute: .Top, multiplier: 1, constant: 0),
-                NSLayoutConstraint(item: self, attribute: .Right, relatedBy: .Equal, toItem: superview, attribute: .Right, multiplier: 1, constant: 0),
-                NSLayoutConstraint(item: self, attribute: .Bottom, relatedBy: .Equal, toItem: superview, attribute: .Bottom, multiplier: 1, constant: 0),
-                ])
+                makeEqualityConstraint(attribute: .Left, toView: superview),
+                makeEqualityConstraint(attribute: .Top, toView: superview),
+                makeEqualityConstraint(attribute: .Right, toView: superview),
+                makeEqualityConstraint(attribute: .Bottom, toView: superview)
+            ])
         }
+    }
+    func makeEqualityConstraint(attribute attribute: NSLayoutAttribute, toView view: UIView) -> NSLayoutConstraint {
+
+        return NSLayoutConstraint(item: self, attribute: attribute, relatedBy: .Equal,
+            toItem: view, attribute: attribute, multiplier: 1, constant: 0)
     }
 }
 
-@IBDesignable
+//@IBDesignable
 public class MVMediaSlider: UIControl {
 
     @IBOutlet private var leftLabelHolder: UIView!
@@ -64,7 +69,8 @@ public class MVMediaSlider: UIControl {
         }
     }
 
-    @IBInspectable public var elapsedViewColor: UIColor! {
+    // @IBInspectable 
+    public var elapsedViewColor: UIColor! {
         didSet {
             leftLabelHolder?.backgroundColor = elapsedViewColor
             elapsedTimeView?.backgroundColor = elapsedViewColor
