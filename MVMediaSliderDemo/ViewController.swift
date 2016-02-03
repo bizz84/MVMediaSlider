@@ -28,9 +28,10 @@ class ViewController: UIViewController {
         NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "fire:", userInfo: nil, repeats: true)
     }
     
+    
     @IBAction func sliderValueChanged(sender: MVMediaSlider) {
         
-        currentTime = sender.currentTime
+        currentTime = sender.currentTime ?? 0
     }
     
     @objc func fire(sender: AnyObject) {

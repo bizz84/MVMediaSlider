@@ -46,6 +46,7 @@ extension UIView {
 //@IBDesignable
 public class MVMediaSlider: UIControl {
 
+    // MARK: IBOutlets
     @IBOutlet private var leftLabelHolder: UIView!
     @IBOutlet private var leftLabel: UILabel!
 
@@ -56,7 +57,15 @@ public class MVMediaSlider: UIControl {
     @IBOutlet private var sliderView: UIView!
     
     @IBOutlet private var elapsedTimeViewWidthConstraint: NSLayoutConstraint!
+    
+    // MARK: UIControl touch handling variables
+    private let DragCaptureDeltaX: CGFloat = 22
+    
+    private var draggingInProgress = false
+    private var initialDragLocationX: CGFloat = 0
+    private var initialSliderConstraintValue: CGFloat = 0
 
+    // MARK: Storyboard
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
@@ -69,6 +78,7 @@ public class MVMediaSlider: UIControl {
         }
     }
 
+    // MARK: styling
     // @IBInspectable 
     public var elapsedViewColor: UIColor! {
         didSet {
@@ -83,19 +93,28 @@ public class MVMediaSlider: UIControl {
         }
     }
     
-    public var totalTime: NSTimeInterval! {
+    // MARK: time management
+    public var totalTime: NSTimeInterval? {
         didSet {
-            updateView(currentTime: currentTime ?? 0, totalTime: totalTime)
+            updateView(currentTime: _currentTime, totalTime: _totalTime)
         }
     }
-    public var currentTime: NSTimeInterval! {
+    public var currentTime: NSTimeInterval? {
         didSet {
             if !draggingInProgress {
-                let totalTime = self.totalTime ?? 0
-                let currentTime = self.currentTime > totalTime ? totalTime: self.currentTime
-                updateView(currentTime: currentTime, totalTime: totalTime ?? 0)
+                let currentTime = min(_currentTime, _totalTime)
+                updateView(currentTime: currentTime, totalTime: _totalTime)
             }
         }
+    }
+    
+    // MARK: internal methods
+    private var _totalTime: NSTimeInterval {
+        return totalTime ?? 0
+    }
+    
+    private var _currentTime: NSTimeInterval {
+        return currentTime ?? 0
     }
     
     private var availableSliderWidth: CGFloat {
@@ -112,14 +131,18 @@ public class MVMediaSlider: UIControl {
         let remainingTime = totalTime - currentTime
         rightLabel.text = NSDateComponentsFormatter.string(timeInterval: remainingTime, prefix: "-")
     }
+
+    // MARK: trait collection
+    override public func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        updateView(currentTime: _currentTime, totalTime: _totalTime)
+    }
+}
+
+extension MVMediaSlider {
     
-    // MARK: UIControl overrides
-    private let DragCaptureDeltaX: CGFloat = 22
-    
-    var draggingInProgress = false
-    var initialDragLocationX: CGFloat = 0
-    var initialSliderConstraintValue: CGFloat = 0
-    
+    // MARK: UIControl subclassing
     override public func beginTrackingWithTouch(touch: UITouch, withEvent event: UIEvent?) -> Bool {
         
         let sliderCenterX = leftLabelHolder.frame.width + elapsedTimeViewWidthConstraint.constant + sliderView.bounds.width / 2
@@ -137,11 +160,11 @@ public class MVMediaSlider: UIControl {
     
     override public func continueTrackingWithTouch(touch: UITouch, withEvent event: UIEvent?) -> Bool {
         
-        let newValue = newSliderValue(touch)
+        let newValue = sliderValue(touch)
         
-        let seekTime = NSTimeInterval(newValue / availableSliderWidth) * totalTime
+        let seekTime = NSTimeInterval(newValue / availableSliderWidth) * _totalTime
         
-        updateView(currentTime: seekTime, totalTime: totalTime ?? 0)
+        updateView(currentTime: seekTime, totalTime: _totalTime)
         
         return true
     }
@@ -150,18 +173,18 @@ public class MVMediaSlider: UIControl {
         
         draggingInProgress = false
         guard let touch = touch else {
-            updateView(currentTime: currentTime ?? 0, totalTime: totalTime ?? 0)
+            updateView(currentTime: _currentTime, totalTime: _totalTime)
             return
         }
         
-        let newValue = newSliderValue(touch)
+        let newValue = sliderValue(touch)
         
-        currentTime = NSTimeInterval(newValue / availableSliderWidth) * totalTime
+        currentTime = NSTimeInterval(newValue / availableSliderWidth) * _totalTime
         
         self.sendActionsForControlEvents(.ValueChanged)
     }
     
-    func newSliderValue(touch: UITouch) -> CGFloat {
+    private func sliderValue(touch: UITouch) -> CGFloat {
         
         let locationX = touch.locationInView(self).x
         
