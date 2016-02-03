@@ -24,13 +24,18 @@ class ViewController: UIViewController {
         
         mediaSlider.totalTime = totalTime
         mediaSlider.currentTime = 0
-    
+            
         NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "fire:", userInfo: nil, repeats: true)
+    }
+    
+    @IBAction func sliderValueChanged(sender: MVMediaSlider) {
+        
+        currentTime = sender.currentTime
     }
     
     @objc func fire(sender: AnyObject) {
         
-        currentTime = (currentTime + 1.0) % totalTime
+        currentTime = currentTime < totalTime ? (currentTime + 1.0) % totalTime : 0
         mediaSlider.currentTime = currentTime
     }
 }
