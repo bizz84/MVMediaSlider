@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		65E73D6B1C62AB2B00DC181D /* MVMediaSlider.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C3BD4A2B1C6245560058CCFE /* MVMediaSlider.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C3BD4A2F1C6245560058CCFE /* MVMediaSlider.h in Headers */ = {isa = PBXBuildFile; fileRef = C3BD4A2E1C6245560058CCFE /* MVMediaSlider.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C3BD4A3D1C6245770058CCFE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BD4A3C1C6245770058CCFE /* AppDelegate.swift */; };
 		C3BD4A3F1C6245770058CCFE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BD4A3E1C6245770058CCFE /* ViewController.swift */; };
@@ -15,8 +16,31 @@
 		C3BD4A471C6245770058CCFE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3BD4A451C6245770058CCFE /* LaunchScreen.storyboard */; };
 		C3BD4A4D1C6245CC0058CCFE /* MVMediaSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BD4A4C1C6245CC0058CCFE /* MVMediaSlider.swift */; };
 		C3BD4A4F1C6245ED0058CCFE /* MVMediaSlider.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3BD4A4E1C6245ED0058CCFE /* MVMediaSlider.xib */; };
-		C3BD4A501C6252910058CCFE /* MVMediaSlider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3BD4A2B1C6245560058CCFE /* MVMediaSlider.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		65E73D6C1C62AB2B00DC181D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C3BD4A221C6245560058CCFE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C3BD4A2A1C6245560058CCFE;
+			remoteInfo = MVMediaSlider;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		65E73D6E1C62AB2B00DC181D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				65E73D6B1C62AB2B00DC181D /* MVMediaSlider.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		C3BD4A2B1C6245560058CCFE /* MVMediaSlider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MVMediaSlider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,7 +69,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3BD4A501C6252910058CCFE /* MVMediaSlider.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,10 +156,12 @@
 				C3BD4A361C6245770058CCFE /* Sources */,
 				C3BD4A371C6245770058CCFE /* Frameworks */,
 				C3BD4A381C6245770058CCFE /* Resources */,
+				65E73D6E1C62AB2B00DC181D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				65E73D6D1C62AB2B00DC181D /* PBXTargetDependency */,
 			);
 			name = MVMediaSliderDemo;
 			productName = MVMediaSliderDemo;
@@ -220,6 +245,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		65E73D6D1C62AB2B00DC181D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C3BD4A2A1C6245560058CCFE /* MVMediaSlider */;
+			targetProxy = 65E73D6C1C62AB2B00DC181D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C3BD4A401C6245770058CCFE /* Main.storyboard */ = {
@@ -338,6 +371,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = MVMediaSlider/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -356,6 +390,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = MVMediaSlider/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -369,6 +404,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = MVMediaSliderDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.musevisions.iOS.MVMediaSliderDemo;
@@ -380,6 +417,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = MVMediaSliderDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.musevisions.iOS.MVMediaSliderDemo;
