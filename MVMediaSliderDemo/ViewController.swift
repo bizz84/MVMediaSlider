@@ -26,10 +26,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         mediaSlider.backgroundColor = UIColor.clearColor()
-        mediaSlider.elapsedViewColor = UIColor.base255(r: 253, g: 160, b: 79)
-        mediaSlider.sliderColor = UIColor.base255(r: 252, g: 126, b: 15)
-        mediaSlider.elapsedTextColor = UIColor.whiteColor()
-        mediaSlider.remainingTextColor = UIColor.darkGrayColor()
+//        mediaSlider.elapsedViewColor = UIColor.base255(r: 253, g: 160, b: 79)
+//        mediaSlider.sliderColor = UIColor.base255(r: 252, g: 126, b: 15)
+//        mediaSlider.elapsedTextColor = UIColor.whiteColor()
+//        mediaSlider.remainingTextColor = UIColor.darkGrayColor()
         mediaSlider.layer.borderWidth = 1.0
         mediaSlider.layer.borderColor = UIColor.darkGrayColor().CGColor
         

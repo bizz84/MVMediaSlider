@@ -43,8 +43,7 @@ private extension UIView {
     }
 }
 
-//@IBDesignable
-public class MVMediaSlider: UIControl {
+@IBDesignable public class MVMediaSlider: UIControl {
 
     // MARK: IBOutlets
     @IBOutlet private var leftLabelHolder: UIView!
@@ -57,6 +56,7 @@ public class MVMediaSlider: UIControl {
     @IBOutlet private var sliderView: UIView!
     
     @IBOutlet private var elapsedTimeViewWidthConstraint: NSLayoutConstraint!
+    @IBOutlet private var sliderWidthConstraint: NSLayoutConstraint!
     
     // MARK: UIControl touch handling variables
     private let DragCaptureDeltaX: CGFloat = 22
@@ -65,7 +65,7 @@ public class MVMediaSlider: UIControl {
     private var initialDragLocationX: CGFloat = 0
     private var initialSliderConstraintValue: CGFloat = 0
 
-    // MARK: Storyboard
+    // MARK: init
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
@@ -76,34 +76,56 @@ public class MVMediaSlider: UIControl {
 
             view.anchorToSuperview()
         }
+
+        setDefaultValues()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+
+        setDefaultValues()
+    }
+    
+    private func setDefaultValues() {
+        
+        sliderWidth = 10
+        elapsedViewColor = UIColor.grayColor()
+        sliderColor = UIColor.darkGrayColor()
+        elapsedTextColor = UIColor.whiteColor()
+        remainingTextColor = UIColor.darkGrayColor()
     }
 
     // MARK: styling
-    // @IBInspectable 
-    public var elapsedViewColor: UIColor! {
-        didSet {
-            leftLabelHolder?.backgroundColor = elapsedViewColor
-            elapsedTimeView?.backgroundColor = elapsedViewColor
-        }
-    }
-    public var sliderColor: UIColor! {
-        didSet {
-            sliderView?.backgroundColor = sliderColor
-        }
-    }
     override public var backgroundColor: UIColor! {
         didSet {
             rightLabelHolder?.backgroundColor = self.backgroundColor
         }
     }
-    public var elapsedTextColor: UIColor! {
+    @IBInspectable public var elapsedViewColor: UIColor! {
         didSet {
-            leftLabel.textColor = elapsedTextColor
+            leftLabelHolder?.backgroundColor = elapsedViewColor
+            elapsedTimeView?.backgroundColor = elapsedViewColor
         }
     }
-    public var remainingTextColor: UIColor! {
+    @IBInspectable public var sliderColor: UIColor! {
         didSet {
-            rightLabel.textColor = remainingTextColor
+            sliderView?.backgroundColor = sliderColor
+        }
+    }
+    @IBInspectable public var elapsedTextColor: UIColor! {
+        didSet {
+            leftLabel?.textColor = elapsedTextColor
+        }
+    }
+    @IBInspectable public var remainingTextColor: UIColor! {
+        didSet {
+            rightLabel?.textColor = remainingTextColor
+        }
+    }
+    
+    @IBInspectable public var sliderWidth: CGFloat! {
+        didSet {
+            sliderWidthConstraint?.constant = sliderWidth
         }
     }
     
