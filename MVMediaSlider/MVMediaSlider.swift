@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension NSDateComponentsFormatter {
+private extension NSDateComponentsFormatter {
     
     // http://stackoverflow.com/questions/4933075/nstimeinterval-to-hhmmss
     class func string(timeInterval timeInterval: NSTimeInterval, prefix: String = "", fallback: String = "0:00") -> String {
@@ -21,7 +21,7 @@ extension NSDateComponentsFormatter {
     }
 }
 
-extension UIView {
+private extension UIView {
     
     func anchorToSuperview() {
         
@@ -84,12 +84,26 @@ public class MVMediaSlider: UIControl {
         didSet {
             leftLabelHolder?.backgroundColor = elapsedViewColor
             elapsedTimeView?.backgroundColor = elapsedViewColor
-            sliderView?.backgroundColor = UIColor.yellowColor()
+        }
+    }
+    public var sliderColor: UIColor! {
+        didSet {
+            sliderView?.backgroundColor = sliderColor
         }
     }
     override public var backgroundColor: UIColor! {
         didSet {
             rightLabelHolder?.backgroundColor = self.backgroundColor
+        }
+    }
+    public var elapsedTextColor: UIColor! {
+        didSet {
+            leftLabel.textColor = elapsedTextColor
+        }
+    }
+    public var remainingTextColor: UIColor! {
+        didSet {
+            rightLabel.textColor = remainingTextColor
         }
     }
     
