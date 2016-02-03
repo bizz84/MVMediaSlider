@@ -150,6 +150,10 @@ public class MVMediaSlider: UIControl {
     override public func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         
+        if draggingInProgress {
+            cancelTrackingWithEvent(nil)
+            draggingInProgress = false
+        }
         updateView(currentTime: _currentTime, totalTime: _totalTime)
     }
 }
