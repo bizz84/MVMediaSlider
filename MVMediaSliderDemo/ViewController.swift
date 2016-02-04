@@ -1,4 +1,4 @@
-    //
+//
 //  ViewController.swift
 //  MVMediaSliderDemo
 //
@@ -17,9 +17,6 @@ extension UIColor {
 
 class ViewController: UIViewController {
 
-    let totalTime: NSTimeInterval = 60 * 1
-    var currentTime: NSTimeInterval = 0
-    
     var timer: NSTimer?
     
     var audioPlayer: AudioPlayer?
@@ -32,9 +29,11 @@ class ViewController: UIViewController {
         didSet {
             playButton.selected = playing
             if (playing) {
-                timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "fire:", userInfo: nil, repeats: true)
+                audioPlayer?.play()
+                timer = NSTimer.scheduledTimerWithTimeInterval(0.3, target: self, selector: "fire:", userInfo: nil, repeats: true)
             }
             else {
+                audioPlayer?.pause()
                 timer?.invalidate()
             }
         }
@@ -49,9 +48,6 @@ class ViewController: UIViewController {
 //        mediaSlider.elapsedTextColor = UIColor.whiteColor()
 //        mediaSlider.remainingTextColor = UIColor.darkGrayColor()
         
-        mediaSlider.totalTime = totalTime
-        mediaSlider.currentTime = 0
-        
 
         loadAudio()
     }
@@ -59,7 +55,7 @@ class ViewController: UIViewController {
     func loadAudio() {
         
         do {
-            let audioPlayer = try AudioPlayer.load("song", type: "mp3", playImmediately: false)
+            let audioPlayer = try AudioPlayer.load("Endure-Z-Type-Soundrack", type: "mp3", playImmediately: false)
             mediaSlider.totalTime = audioPlayer.duration
             mediaSlider.currentTime = 0
             self.audioPlayer = audioPlayer
@@ -72,15 +68,17 @@ class ViewController: UIViewController {
     // MARK: IBActions
     @IBAction func sliderValueChanged(sender: MVMediaSlider) {
         
-        currentTime = sender.currentTime ?? 0
+        updatePlayer(currentTime: sender.currentTime ?? 0)
     }
     
     @IBAction func backTapped(sender: UIButton) {
-        updateCurrentTime(offset: -10)
+        let newTime = _currentTime - 10 > 0 ? _currentTime - 10 : 0
+        updatePlayer(currentTime: newTime)
     }
 
     @IBAction func forwardTapped(sender: UIButton) {
-        updateCurrentTime(offset: 10)
+        let newTime = _currentTime + 10 < _totalTime ? _currentTime + 10 : 0
+        updatePlayer(currentTime: newTime)
     }
     
     @IBAction func playTapped(sender: UIButton) {
@@ -90,16 +88,23 @@ class ViewController: UIViewController {
     
     @objc func fire(sender: AnyObject) {
         
-        updateCurrentTime(offset: 1)
+        updateMediaSlider(currentTime: _currentTime)
     }
     
-    func updateCurrentTime(offset offset: NSTimeInterval) {
-        currentTime = (currentTime + offset < 0 || currentTime + offset >= totalTime) ? 0 : currentTime + offset
+    func updatePlayer(currentTime currentTime: NSTimeInterval) {
+        audioPlayer?.currentTime = currentTime
+    }
+    
+    func updateMediaSlider(currentTime currentTime: NSTimeInterval) {
         mediaSlider.currentTime = currentTime
-        
-//        if offset > 0 && currentTime == 0 {
-//            playing = false
-//        }
+    }
+    
+    var _currentTime: NSTimeInterval {
+        return audioPlayer?.currentTime ?? 0
+    }
+    
+    var _totalTime: NSTimeInterval {
+        return audioPlayer?.duration ?? 0
     }
 
 }

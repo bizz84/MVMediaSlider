@@ -42,29 +42,40 @@ class AudioPlayer: NSObject, AVAudioPlayerDelegate {
     
         self.audioPlayer = audioPlayer
         super.init()
-        self.audioPlayer.delegate = self
-        self.audioPlayer.prepareToPlay()
+        audioPlayer.delegate = self
+        audioPlayer.prepareToPlay()
+        audioPlayer.numberOfLoops = -1
         if playImmediately {
-            self.audioPlayer.play()
+            audioPlayer.play()
         }
     }
     
     var duration: NSTimeInterval {
-        return self.audioPlayer.duration
+        return audioPlayer.duration
     }
     
     var currentTime: NSTimeInterval {
         get {
-            return self.audioPlayer.currentTime
+            return audioPlayer.currentTime
         }
         set {
-            self.audioPlayer.currentTime = currentTime
+            audioPlayer.currentTime = newValue
         }
+    }
+    
+    func play() -> Bool {
+        return audioPlayer.play()
+    }
+    
+    func pause() {
+        audioPlayer.pause()
     }
     
     // MARK: AVAudioPlayerDelegate
     func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
         
+        player.stop()
+        player.prepareToPlay()
     }
     
     func audioPlayerDecodeErrorDidOccur(player: AVAudioPlayer, error: NSError?) {
