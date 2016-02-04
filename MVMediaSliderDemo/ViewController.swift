@@ -51,20 +51,30 @@ class ViewController: UIViewController {
 //        mediaSlider.remainingTextColor = UIColor.darkGrayColor()
         
 
-        loadAudio()
+        loadAudio(false)
     }
     
-    func loadAudio() {
-        
-        do {
-            let audioPlayer = try AudioPlayer.load("Endure-Z-Type-Soundrack", type: "mp3", playImmediately: false)
+    func loadAudio(realPlayer: Bool) {
+
+        if realPlayer {
+            do {
+                let audioPlayer = try RealAudioPlayer.load("Endure-Z-Type-Soundrack", type: "mp3", playImmediately: false)
+                mediaSlider.totalTime = audioPlayer.duration
+                mediaSlider.currentTime = 0
+                self.audioPlayer = audioPlayer
+            }
+            catch {
+                print("Error loading: \(error)")
+            }
+
+        }
+        else {
+            let audioPlayer = FakeAudioPlayer()
             mediaSlider.totalTime = audioPlayer.duration
             mediaSlider.currentTime = 0
             self.audioPlayer = audioPlayer
         }
-        catch {
-            print("Error loading: \(error)")
-        }
+
     }
     
     // MARK: IBActions
