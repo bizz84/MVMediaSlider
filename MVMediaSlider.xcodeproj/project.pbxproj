@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		65E73D6B1C62AB2B00DC181D /* MVMediaSlider.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C3BD4A2B1C6245560058CCFE /* MVMediaSlider.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		65E73D721C64039600DC181D /* SelectableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E73D711C64039600DC181D /* SelectableButton.swift */; };
 		C30D2A901C63B67F00616C67 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30D2A8F1C63B67F00616C67 /* AudioPlayer.swift */; };
 		C3BD4A2F1C6245560058CCFE /* MVMediaSlider.h in Headers */ = {isa = PBXBuildFile; fileRef = C3BD4A2E1C6245560058CCFE /* MVMediaSlider.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C3BD4A3D1C6245770058CCFE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BD4A3C1C6245770058CCFE /* AppDelegate.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		65E73D711C64039600DC181D /* SelectableButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectableButton.swift; sourceTree = "<group>"; };
 		C30D2A8F1C63B67F00616C67 /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		C3BD4A2B1C6245560058CCFE /* MVMediaSlider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MVMediaSlider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3BD4A2E1C6245560058CCFE /* MVMediaSlider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MVMediaSlider.h; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				C3BD4A3C1C6245770058CCFE /* AppDelegate.swift */,
 				C30D2A8F1C63B67F00616C67 /* AudioPlayer.swift */,
 				C3BD4A3E1C6245770058CCFE /* ViewController.swift */,
+				65E73D711C64039600DC181D /* SelectableButton.swift */,
 				C3BD4A401C6245770058CCFE /* Main.storyboard */,
 				C3BD4A431C6245770058CCFE /* Assets.xcassets */,
 				C3BD4A451C6245770058CCFE /* LaunchScreen.storyboard */,
@@ -243,6 +246,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3BD4A3F1C6245770058CCFE /* ViewController.swift in Sources */,
+				65E73D721C64039600DC181D /* SelectableButton.swift in Sources */,
 				C3BD4A3D1C6245770058CCFE /* AppDelegate.swift in Sources */,
 				C30D2A901C63B67F00616C67 /* AudioPlayer.swift in Sources */,
 			);
