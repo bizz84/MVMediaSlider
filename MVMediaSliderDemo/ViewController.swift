@@ -17,6 +17,8 @@ extension UIColor {
 
 class ViewController: UIViewController {
 
+    let SeekTimeStep = 10.0
+    
     var timer: NSTimer?
     
     var audioPlayer: AudioPlayer?
@@ -30,7 +32,7 @@ class ViewController: UIViewController {
             playButton.selected = playing
             if (playing) {
                 audioPlayer?.play()
-                timer = NSTimer.scheduledTimerWithTimeInterval(0.3, target: self, selector: "fire:", userInfo: nil, repeats: true)
+                timer = NSTimer.scheduledTimerWithTimeInterval(0.3, target: self, selector: "updateViews:", userInfo: nil, repeats: true)
             }
             else {
                 audioPlayer?.pause()
@@ -72,12 +74,12 @@ class ViewController: UIViewController {
     }
     
     @IBAction func backTapped(sender: UIButton) {
-        let newTime = _currentTime - 10 > 0 ? _currentTime - 10 : 0
+        let newTime = _currentTime - SeekTimeStep > 0 ? _currentTime - SeekTimeStep : 0
         updatePlayer(currentTime: newTime)
     }
 
     @IBAction func forwardTapped(sender: UIButton) {
-        let newTime = _currentTime + 10 < _totalTime ? _currentTime + 10 : 0
+        let newTime = _currentTime + SeekTimeStep < _totalTime ? _currentTime + SeekTimeStep : 0
         updatePlayer(currentTime: newTime)
     }
     
@@ -86,7 +88,7 @@ class ViewController: UIViewController {
         playing = !playing
     }
     
-    @objc func fire(sender: AnyObject) {
+    @objc func updateViews(sender: AnyObject) {
         
         updateMediaSlider(currentTime: _currentTime)
     }
