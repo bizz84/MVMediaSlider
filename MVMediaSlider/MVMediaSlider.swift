@@ -211,7 +211,6 @@ extension MVMediaSlider {
         let sliderCenterX = leftLabelHolder.frame.width + elapsedTimeViewWidthConstraint.constant + sliderView.bounds.width / 2
         
         let locationX = touch.locationInView(self).x
-        //print("beginTrackingWithTouch: \(locationX)")
         
         let beginTracking = locationX > sliderCenterX - DragCaptureDeltaX && locationX < sliderCenterX + DragCaptureDeltaX
         if beginTracking {
@@ -227,8 +226,6 @@ extension MVMediaSlider {
             draggingInProgress = true
         }
         
-        //print("continueTrackingWithTouch: \(touch.locationInView(self).x)")
-        
         let newValue = sliderValue(touch)
         
         let seekTime = NSTimeInterval(newValue / availableSliderWidth) * _totalTime
@@ -241,7 +238,7 @@ extension MVMediaSlider {
     override public func endTrackingWithTouch(touch: UITouch?, withEvent event: UIEvent?) {
         
         draggingInProgress = false
-        //print("endTrackingWithTouch")
+
         guard let touch = touch else {
             updateView(currentTime: _currentTime, totalTime: _totalTime)
             return
