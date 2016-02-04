@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MVMediaSlider" customModule="MVMediaSlider" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MVMediaSlider" customModule="MVMediaSlider">
             <connections>
+                <outlet property="bottomSeparatorView" destination="7qd-ks-0Mp" id="oVf-d1-ZGT"/>
                 <outlet property="elapsedTimeView" destination="5VR-4y-WAH" id="QRd-Q9-dOd"/>
                 <outlet property="elapsedTimeViewWidthConstraint" destination="Hl1-Om-olh" id="MmL-A6-U61"/>
                 <outlet property="leftLabel" destination="PJg-QU-cGq" id="wsi-am-8aD"/>
@@ -15,6 +16,7 @@
                 <outlet property="rightLabelHolder" destination="6lx-dp-5I2" id="Unq-6h-Wgi"/>
                 <outlet property="sliderView" destination="vfI-Ao-nVQ" id="mOZ-2p-j0m"/>
                 <outlet property="sliderWidthConstraint" destination="dwT-Db-aMS" id="tZe-wZ-qyp"/>
+                <outlet property="topSeparatorView" destination="1SC-nA-NNh" id="ZBQ-hj-p0o"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -26,65 +28,118 @@
                     <rect key="frame" x="0.0" y="0.0" width="40" height="25"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJg-QU-cGq">
-                            <rect key="frame" x="4" y="4" width="30.5" height="17"/>
+                            <rect key="frame" x="4" y="4" width="31" height="17"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="40" id="9v0-qc-3Oq"/>
-                        <constraint firstItem="PJg-QU-cGq" firstAttribute="centerY" secondItem="Ot6-VD-NwY" secondAttribute="centerY" id="lFf-bu-WyK"/>
-                        <constraint firstItem="PJg-QU-cGq" firstAttribute="leading" secondItem="Ot6-VD-NwY" secondAttribute="leading" constant="4" id="to1-R0-dl7"/>
+                        <constraint firstAttribute="width" constant="40" identifier="Left Holder: Width" id="9v0-qc-3Oq"/>
+                        <constraint firstItem="PJg-QU-cGq" firstAttribute="centerY" secondItem="Ot6-VD-NwY" secondAttribute="centerY" identifier="Left Label: CenterY" id="lFf-bu-WyK"/>
+                        <constraint firstItem="PJg-QU-cGq" firstAttribute="leading" secondItem="Ot6-VD-NwY" secondAttribute="leading" constant="4" identifier="Left Label: Leading" id="to1-R0-dl7"/>
                     </constraints>
                 </view>
                 <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6lx-dp-5I2" userLabel="Right Label Holder">
                     <rect key="frame" x="260" y="0.0" width="40" height="25"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vcX-6T-2ne">
-                            <rect key="frame" x="5.5" y="4" width="30.5" height="17"/>
+                            <rect key="frame" x="6" y="4" width="31" height="17"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="vcX-6T-2ne" secondAttribute="trailing" constant="4" id="H2v-Ew-Fvt"/>
-                        <constraint firstItem="vcX-6T-2ne" firstAttribute="centerY" secondItem="6lx-dp-5I2" secondAttribute="centerY" id="SV3-zf-Vgr"/>
-                        <constraint firstAttribute="width" constant="40" id="Ulc-ml-U99"/>
+                        <constraint firstAttribute="trailing" secondItem="vcX-6T-2ne" secondAttribute="trailing" constant="4" identifier="Right Label: Trailing" id="H2v-Ew-Fvt"/>
+                        <constraint firstItem="vcX-6T-2ne" firstAttribute="centerY" secondItem="6lx-dp-5I2" secondAttribute="centerY" identifier="Right Label: CenterY" id="SV3-zf-Vgr"/>
+                        <constraint firstAttribute="width" constant="40" identifier="Right Label: Width" id="Ulc-ml-U99"/>
                     </constraints>
                 </view>
                 <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5VR-4y-WAH">
                     <rect key="frame" x="40" y="0.0" width="100" height="25"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="Hl1-Om-olh"/>
                     </constraints>
                 </view>
                 <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vfI-Ao-nVQ">
                     <rect key="frame" x="140" y="0.0" width="10" height="25"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="csQ-yg-bLg" userLabel="Slider Line Left">
+                            <rect key="frame" x="2" y="0.0" width="1" height="25"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="1" identifier="Slider Line Left: Width" id="af8-YD-Zwa"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ztB-7v-dx0" userLabel="Slider Line Center">
+                            <rect key="frame" x="5" y="0.0" width="1" height="25"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="1" identifier="Slider Line Center: Width" id="v2C-3J-hJj"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kRp-EN-c7A" userLabel="Slider Line Right">
+                            <rect key="frame" x="7" y="0.0" width="1" height="25"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="1" identifier="Slider Line Right: Width" id="eBb-6H-oPD"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="10" id="dwT-Db-aMS"/>
+                        <constraint firstAttribute="trailing" secondItem="kRp-EN-c7A" secondAttribute="trailing" constant="2" identifier="Slider Line Right: Trailing" id="0SK-sO-uBR"/>
+                        <constraint firstItem="kRp-EN-c7A" firstAttribute="top" secondItem="vfI-Ao-nVQ" secondAttribute="top" identifier="Slider Line Right: Top" id="5MW-iw-N8W"/>
+                        <constraint firstItem="ztB-7v-dx0" firstAttribute="centerX" secondItem="vfI-Ao-nVQ" secondAttribute="centerX" identifier="Slider Line Center: Center" id="77A-9g-RTW"/>
+                        <constraint firstItem="csQ-yg-bLg" firstAttribute="top" secondItem="vfI-Ao-nVQ" secondAttribute="top" identifier="Slider Line Left: Top" id="Zn1-K0-nwy"/>
+                        <constraint firstAttribute="bottom" secondItem="kRp-EN-c7A" secondAttribute="bottom" identifier="Slider Line Right: Bottom" id="cXf-eN-xJt"/>
+                        <constraint firstItem="ztB-7v-dx0" firstAttribute="top" secondItem="vfI-Ao-nVQ" secondAttribute="top" id="csR-kv-k4k"/>
+                        <constraint firstAttribute="width" constant="10" identifier="Slider View: Width" id="dwT-Db-aMS"/>
+                        <constraint firstAttribute="bottom" secondItem="ztB-7v-dx0" secondAttribute="bottom" identifier="Slider Line Center: Bottom" id="gHe-UO-INS"/>
+                        <constraint firstItem="csQ-yg-bLg" firstAttribute="leading" secondItem="vfI-Ao-nVQ" secondAttribute="leading" constant="2" identifier="Slider Line Left: Leading" id="iR3-1J-dWT"/>
+                        <constraint firstAttribute="bottom" secondItem="csQ-yg-bLg" secondAttribute="bottom" identifier="Slider Line Left: Bottom" id="rsX-NV-syK"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1SC-nA-NNh" userLabel="Top Separator">
+                    <rect key="frame" x="0.0" y="0.0" width="300" height="1"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" identifier="Top Separator: Height" id="Pqw-y4-Jib"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7qd-ks-0Mp" userLabel="Bottom Separator">
+                    <rect key="frame" x="0.0" y="24" width="300" height="1"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" identifier="Bottom Separator: Height" id="Wh2-61-Tx5"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="6lx-dp-5I2" secondAttribute="trailing" id="0zQ-sg-xdE"/>
-                <constraint firstItem="vfI-Ao-nVQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="30G-d9-knc"/>
-                <constraint firstItem="Ot6-VD-NwY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="3Dn-BB-WH2"/>
-                <constraint firstItem="vfI-Ao-nVQ" firstAttribute="leading" secondItem="5VR-4y-WAH" secondAttribute="trailing" id="4F7-tJ-8B6"/>
-                <constraint firstItem="5VR-4y-WAH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="4KL-eB-6EP"/>
-                <constraint firstAttribute="bottom" secondItem="Ot6-VD-NwY" secondAttribute="bottom" id="AbZ-ae-aaS"/>
-                <constraint firstAttribute="bottom" secondItem="vfI-Ao-nVQ" secondAttribute="bottom" id="FTc-8g-WUt"/>
-                <constraint firstItem="5VR-4y-WAH" firstAttribute="leading" secondItem="Ot6-VD-NwY" secondAttribute="trailing" id="LqH-si-wKQ"/>
-                <constraint firstItem="6lx-dp-5I2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="cRK-hv-xIS"/>
-                <constraint firstAttribute="bottom" secondItem="5VR-4y-WAH" secondAttribute="bottom" id="dnN-gg-epH"/>
-                <constraint firstItem="Ot6-VD-NwY" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ghM-jR-LrR"/>
-                <constraint firstAttribute="bottom" secondItem="6lx-dp-5I2" secondAttribute="bottom" id="sCJ-EB-2qc"/>
+                <constraint firstAttribute="trailing" secondItem="6lx-dp-5I2" secondAttribute="trailing" identifier="Right Holder: Trailing" id="0zQ-sg-xdE"/>
+                <constraint firstItem="vfI-Ao-nVQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" identifier="Slider View: Top" id="30G-d9-knc"/>
+                <constraint firstItem="Ot6-VD-NwY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" identifier="Left Holder: Leading" id="3Dn-BB-WH2"/>
+                <constraint firstItem="vfI-Ao-nVQ" firstAttribute="leading" secondItem="5VR-4y-WAH" secondAttribute="trailing" identifier="Slider View: Leading" id="4F7-tJ-8B6"/>
+                <constraint firstItem="5VR-4y-WAH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" identifier="Elapsed Time View: Top" id="4KL-eB-6EP"/>
+                <constraint firstAttribute="bottom" secondItem="Ot6-VD-NwY" secondAttribute="bottom" identifier="Left Holder: Bottom" id="AbZ-ae-aaS"/>
+                <constraint firstAttribute="trailing" secondItem="7qd-ks-0Mp" secondAttribute="trailing" identifier="Bottom Separator: Trailing" id="Brg-gr-CAP"/>
+                <constraint firstAttribute="bottom" secondItem="vfI-Ao-nVQ" secondAttribute="bottom" identifier="Slider View: Bottom" id="FTc-8g-WUt"/>
+                <constraint firstAttribute="trailing" secondItem="1SC-nA-NNh" secondAttribute="trailing" identifier="Top Separator: Trailing" id="Lec-YP-RfQ"/>
+                <constraint firstItem="5VR-4y-WAH" firstAttribute="leading" secondItem="Ot6-VD-NwY" secondAttribute="trailing" identifier="Elapsed Time View: Leading" id="LqH-si-wKQ"/>
+                <constraint firstItem="7qd-ks-0Mp" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" identifier="Bottom Separator: Leading" id="PW5-Uj-o0s"/>
+                <constraint firstItem="1SC-nA-NNh" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" identifier="Top Separator: Leading" id="ShJ-xm-VsJ"/>
+                <constraint firstItem="6lx-dp-5I2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" identifier="Right Holder: Top" id="cRK-hv-xIS"/>
+                <constraint firstAttribute="bottom" secondItem="5VR-4y-WAH" secondAttribute="bottom" identifier="Elapsed Time View: Bottom" id="dnN-gg-epH"/>
+                <constraint firstItem="Ot6-VD-NwY" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" identifier="Left Holder: Top" id="ghM-jR-LrR"/>
+                <constraint firstItem="1SC-nA-NNh" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" identifier="Top Separator: Top" id="mme-Zl-6KV"/>
+                <constraint firstAttribute="bottom" secondItem="7qd-ks-0Mp" secondAttribute="bottom" identifier="Bottom Separator: Bottom" id="pux-9t-emw"/>
+                <constraint firstAttribute="bottom" secondItem="6lx-dp-5I2" secondAttribute="bottom" identifier="Right Holder: Bottom" id="sCJ-EB-2qc"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

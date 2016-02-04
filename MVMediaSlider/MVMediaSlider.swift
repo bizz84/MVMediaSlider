@@ -57,7 +57,10 @@ private extension UIView {
     
     @IBOutlet private var elapsedTimeViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet private var sliderWidthConstraint: NSLayoutConstraint!
-    
+
+    @IBOutlet private var topSeparatorView: UIView!
+    @IBOutlet private var bottomSeparatorView: UIView!
+
     // MARK: UIControl touch handling variables
     private let DragCaptureDeltaX: CGFloat = 22
     
@@ -88,11 +91,12 @@ private extension UIView {
     
     private func setDefaultValues() {
         
-        sliderWidth = 10
         elapsedViewColor = UIColor.grayColor()
         sliderColor = UIColor.darkGrayColor()
         elapsedTextColor = UIColor.whiteColor()
         remainingTextColor = UIColor.darkGrayColor()
+        topSeparatorColor = UIColor.grayColor()
+        bottomSeparatorColor = UIColor.grayColor()
     }
 
     // MARK: styling
@@ -105,6 +109,11 @@ private extension UIView {
         didSet {
             leftLabelHolder?.backgroundColor = elapsedViewColor
             elapsedTimeView?.backgroundColor = elapsedViewColor
+            if let lines = sliderView?.subviews {
+                for line in lines {
+                    line.backgroundColor = elapsedViewColor
+                }
+            }
         }
     }
     @IBInspectable public var sliderColor: UIColor! {
@@ -114,18 +123,32 @@ private extension UIView {
     }
     @IBInspectable public var elapsedTextColor: UIColor! {
         didSet {
-            leftLabel?.textColor = elapsedTextColor
+            leftLabel?.textColor = elapsedTextColor ?? UIColor.grayColor()
         }
     }
     @IBInspectable public var remainingTextColor: UIColor! {
         didSet {
-            rightLabel?.textColor = remainingTextColor
+            rightLabel?.textColor = remainingTextColor ?? UIColor.darkGrayColor()
         }
     }
     
-    @IBInspectable public var sliderWidth: CGFloat! {
+    @IBInspectable public var topSeparatorColor: UIColor? {
         didSet {
-            sliderWidthConstraint?.constant = sliderWidth
+            topSeparatorView?.backgroundColor = topSeparatorColor
+        }
+    }
+    @IBInspectable public var bottomSeparatorColor: UIColor? {
+        didSet {
+            bottomSeparatorView?.backgroundColor = bottomSeparatorColor
+        }
+    }
+    
+    // IBInspectable should support UIFont: http://www.openradar.me/22835760
+    // @IBInspectable
+    public var timersFont: UIFont! {
+        didSet {
+            leftLabel?.font = timersFont
+            rightLabel?.font = timersFont
         }
     }
     
@@ -160,12 +183,12 @@ private extension UIView {
     private func updateView(currentTime currentTime: NSTimeInterval, totalTime: NSTimeInterval) {
         
         let normalizedTime = totalTime > 0 ? currentTime / totalTime : 0
-        elapsedTimeViewWidthConstraint.constant = CGFloat(normalizedTime) * availableSliderWidth
+        elapsedTimeViewWidthConstraint?.constant = CGFloat(normalizedTime) * availableSliderWidth
         
-        leftLabel.text = NSDateComponentsFormatter.string(timeInterval: currentTime)
+        leftLabel?.text = NSDateComponentsFormatter.string(timeInterval: currentTime)
         
         let remainingTime = totalTime - currentTime
-        rightLabel.text = NSDateComponentsFormatter.string(timeInterval: remainingTime, prefix: "-")
+        rightLabel?.text = NSDateComponentsFormatter.string(timeInterval: remainingTime, prefix: "-")
     }
 
     // MARK: trait collection
@@ -186,9 +209,9 @@ extension MVMediaSlider {
     override public func beginTrackingWithTouch(touch: UITouch, withEvent event: UIEvent?) -> Bool {
         
         let sliderCenterX = leftLabelHolder.frame.width + elapsedTimeViewWidthConstraint.constant + sliderView.bounds.width / 2
-        draggingInProgress = true
         
         let locationX = touch.locationInView(self).x
+        //print("beginTrackingWithTouch: \(locationX)")
         
         let beginTracking = locationX > sliderCenterX - DragCaptureDeltaX && locationX < sliderCenterX + DragCaptureDeltaX
         if beginTracking {
@@ -199,6 +222,12 @@ extension MVMediaSlider {
     }
     
     override public func continueTrackingWithTouch(touch: UITouch, withEvent event: UIEvent?) -> Bool {
+        
+        if !draggingInProgress {
+            draggingInProgress = true
+        }
+        
+        //print("continueTrackingWithTouch: \(touch.locationInView(self).x)")
         
         let newValue = sliderValue(touch)
         
@@ -212,6 +241,7 @@ extension MVMediaSlider {
     override public func endTrackingWithTouch(touch: UITouch?, withEvent event: UIEvent?) {
         
         draggingInProgress = false
+        //print("endTrackingWithTouch")
         guard let touch = touch else {
             updateView(currentTime: _currentTime, totalTime: _totalTime)
             return
