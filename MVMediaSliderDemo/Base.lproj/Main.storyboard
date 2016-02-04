@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="npB-mZ-h8r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Beethoven-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MVMediaSliderDemo" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,17 +19,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="02N-UT-Vnb" customClass="MVMediaSlider" customModule="MVMediaSlider">
-                                <rect key="frame" x="0.0" y="110" width="600" height="51"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="304" width="600" height="25"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="Lap-K3-bvY"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="elapsedViewColor">
-                                        <color key="value" red="0.99215686274509807" green="0.62745098039215685" blue="0.30980392156862746" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" red="0.99215686270000003" green="0.62745098040000002" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="sliderColor">
-                                        <color key="value" red="0.9882352941176471" green="0.49411764705882355" blue="0.058823529411764705" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" red="0.98823529409999999" green="0.4941176471" blue="0.058823529409999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="elapsedTextColor">
                                         <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -36,26 +37,147 @@
                                     <userDefinedRuntimeAttribute type="color" keyPath="remainingTextColor">
                                         <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="topSeparatorColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="bottomSeparatorColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <variation key="widthClass=regular" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="664" width="800" height="25"/>
+                                </variation>
                                 <connections>
                                     <action selector="sliderValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="Zc3-RU-gCp"/>
                                 </connections>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HJo-ss-fcg">
+                                <rect key="frame" x="163" y="359" width="34" height="30"/>
+                                <state key="normal" title="Back"/>
+                                <variation key="widthClass=regular" misplaced="YES">
+                                    <rect key="frame" x="263" y="748" width="34" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="backTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9oI-SF-94d"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ma0-FO-H8e">
+                                <rect key="frame" x="285" y="359" width="30" height="30"/>
+                                <state key="normal" title="Play"/>
+                                <state key="selected" title="Pause"/>
+                                <variation key="widthClass=regular" misplaced="YES">
+                                    <rect key="frame" x="385" y="748" width="30" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="playTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GQP-7E-WU0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lmC-ax-n6W">
+                                <rect key="frame" x="392" y="359" width="56" height="30"/>
+                                <state key="normal" title="Forward"/>
+                                <variation key="widthClass=regular" misplaced="YES">
+                                    <rect key="frame" x="492" y="748" width="56" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="forwardTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9GU-y1-BaC"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SeasideCover" translatesAutoresizingMaskIntoConstraints="NO" id="yLH-br-m7E" userLabel="Cover">
+                                <rect key="frame" x="140" y="64" width="320" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="yLH-br-m7E" secondAttribute="height" multiplier="4:3" identifier="Cover: Aspect Ratio" id="pic-S6-vY8"/>
+                                    <constraint firstAttribute="width" constant="300" identifier="Cover: Width" id="r02-rb-yHn"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="r02-rb-yHn"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="r02-rb-yHn"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=regular" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="64" width="800" height="600"/>
+                                </variation>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Ma0-FO-H8e" firstAttribute="top" secondItem="02N-UT-Vnb" secondAttribute="bottom" constant="30" id="4oy-A6-mJX">
+                                <variation key="heightClass=compact" constant="5"/>
+                            </constraint>
+                            <constraint firstItem="lmC-ax-n6W" firstAttribute="centerY" secondItem="Ma0-FO-H8e" secondAttribute="centerY" id="50g-Rn-yF8"/>
                             <constraint firstItem="02N-UT-Vnb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="9la-DW-BBM"/>
+                            <constraint firstAttribute="trailing" secondItem="yLH-br-m7E" secondAttribute="trailing" identifier="Cover: Trailing" id="A1N-j4-lRV"/>
                             <constraint firstAttribute="trailing" secondItem="02N-UT-Vnb" secondAttribute="trailing" id="E7e-tU-TEj"/>
-                            <constraint firstItem="02N-UT-Vnb" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="90" id="axZ-gJ-yqX"/>
+                            <constraint firstItem="Ma0-FO-H8e" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="NeT-x9-8SR"/>
+                            <constraint firstItem="02N-UT-Vnb" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="WWw-1O-6na"/>
+                            <constraint firstItem="yLH-br-m7E" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" identifier="Cover: CenterX" id="YTj-Hu-oAj"/>
+                            <constraint firstItem="02N-UT-Vnb" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="axZ-gJ-yqX"/>
+                            <constraint firstItem="HJo-ss-fcg" firstAttribute="centerY" secondItem="Ma0-FO-H8e" secondAttribute="centerY" id="f2H-Q8-7xa"/>
+                            <constraint firstItem="02N-UT-Vnb" firstAttribute="top" secondItem="yLH-br-m7E" secondAttribute="bottom" id="fGu-ZV-i3y"/>
+                            <constraint firstItem="yLH-br-m7E" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" identifier="Cover: Top" id="mKC-tH-pXP"/>
+                            <constraint firstItem="yLH-br-m7E" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" identifier="Cover: Leading" id="oTT-dM-tO1"/>
+                            <constraint firstItem="HJo-ss-fcg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-120" id="pH7-tn-gVZ"/>
+                            <constraint firstItem="Ma0-FO-H8e" firstAttribute="leading" secondItem="HJo-ss-fcg" secondAttribute="trailing" constant="79" id="quv-5I-9xJ"/>
+                            <constraint firstItem="lmC-ax-n6W" firstAttribute="leading" secondItem="Ma0-FO-H8e" secondAttribute="trailing" constant="72" id="tP4-zU-bDk"/>
+                            <constraint firstItem="lmC-ax-n6W" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="120" id="vgy-DS-xYy"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="A1N-j4-lRV"/>
+                                <exclude reference="oTT-dM-tO1"/>
+                                <exclude reference="WWw-1O-6na"/>
+                                <exclude reference="axZ-gJ-yqX"/>
+                                <exclude reference="quv-5I-9xJ"/>
+                                <exclude reference="tP4-zU-bDk"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="A1N-j4-lRV"/>
+                                <exclude reference="oTT-dM-tO1"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular">
+                            <mask key="constraints">
+                                <include reference="A1N-j4-lRV"/>
+                                <include reference="oTT-dM-tO1"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <navigationItem key="navigationItem" title="Beethoven" id="Ljz-Pp-X2B"/>
                     <connections>
                         <outlet property="mediaSlider" destination="02N-UT-Vnb" id="thG-Uu-9oo"/>
+                        <outlet property="playButton" destination="Ma0-FO-H8e" id="sDa-Zq-mpR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1419" y="524"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="LDf-Oh-gRB">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="npB-mZ-h8r" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eVC-b2-ezb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="ADY-HQ-o7a"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yFA-b8-AAV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
             <point key="canvasLocation" x="607" y="524"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="SeasideCover" width="320" height="240"/>
+    </resources>
 </document>
