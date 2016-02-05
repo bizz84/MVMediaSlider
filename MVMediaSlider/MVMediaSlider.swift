@@ -72,11 +72,12 @@ private extension UIView {
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        if let frameworkBundle = NSBundle(identifier: "com.musevisions.iOS.MVMediaSlider"),
-            let view = frameworkBundle.loadNibNamed("MVMediaSlider", owner: self, options: nil).first as? UIView {
-
+        let bundle = NSBundle(forClass: MVMediaSlider.self)
+            
+        if let view = bundle.loadNibNamed("MVMediaSlider", owner: self, options: nil).first as? UIView {
+            
             self.addSubview(view)
-
+            
             view.anchorToSuperview()
         }
 
