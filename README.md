@@ -2,7 +2,6 @@
 MVMediaSlider is a UIControl subclass inspired by the [Overcast App](https://itunes.apple.com/app/id888422857).
 
 
-
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat
             )](http://mit-license.org)
 [![Platform](http://img.shields.io/badge/platform-ios%20%7C%20osx-lightgrey.svg?style=flat
@@ -17,7 +16,6 @@ MVMediaSlider is a UIControl subclass inspired by the [Overcast App](https://itu
 
 <img src="Screenshots/MediaPlayer.png" width="320">
 
-
 ## Installation
 MVMediaSlider can be installed as a Cocoapod and builds as a Swift framework. To install, include this in your Podfile.
 
@@ -26,15 +24,21 @@ use_frameworks!
 
 pod 'MVMediaSlider'
 ```
-Once installed, just ```import MVMediaSlider``` in your classes and you're good to go.
+
+## Usage 
+* Drag a UIView in your storyboard
+* Set the class type to `MVMediaSlider`
+* Configure the presentation properties as needed.
+* ```import MVMediaSlider``` in your classes and you're good to go.
 
 ## Sample Code
-The project includes a demo app showing how to use MVMediaSlider to build a simple audio player.
+The project includes a demo app showing how to build a simple audio player using MVMediaSlider to change the playback position.
+
 
 ## Features
-- Target-selector API `UIControlEvents.ValueChanged`
+- Register to `UIControlEvents.ValueChanged` to handle changes in the playback position (same target/selector method used by `UIControl`/`UISlider`).
 - `@IBDesignable` properties for easier configuration in Interface builder
-- Super easy to integrate in existing storyboards
+- Seamless integration in existing storyboards: Just drag a UIView, set the class type to `MVMediaSlider` and configure the presentation properties as needed.
 
 ### Configurable properties
 
@@ -47,7 +51,6 @@ The project includes a demo app showing how to use MVMediaSlider to build a simp
 * Elapsed View Color
 * Top Separator Color
 * Bottom Separator Color
-
 
 
 ## License
