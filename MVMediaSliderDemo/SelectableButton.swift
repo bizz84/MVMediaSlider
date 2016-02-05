@@ -10,7 +10,6 @@ import UIKit
 
 class SelectableButton: UIButton {
 
-
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         let defaultImage = self.imageForState(.Normal)?.imageWithRenderingMode(.AlwaysTemplate)

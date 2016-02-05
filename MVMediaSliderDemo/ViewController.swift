@@ -9,23 +9,17 @@
 import UIKit
 import MVMediaSlider
 
-extension UIColor {
-    class func base255(r r: CGFloat, g: CGFloat, b: CGFloat) -> UIColor {
-        return UIColor(red: r/255.0, green: g/255.0, blue: b/255.0, alpha: 1.0)
-    }
-}
-
 class ViewController: UIViewController {
 
-    let SeekTimeStep = 10.0
+    private let SeekTimeStep = 10.0
     
-    var timer: NSTimer?
+    private var timer: NSTimer?
     
-    var audioPlayer: AudioPlayer?
+    private var audioPlayer: AudioPlayer?
     
-    @IBOutlet var mediaSlider: MVMediaSlider!
+    @IBOutlet private var mediaSlider: MVMediaSlider!
     
-    @IBOutlet var playButton: UIButton!
+    @IBOutlet private var playButton: UIButton!
 
     var playing: Bool = false {
         didSet {
@@ -43,22 +37,15 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        mediaSlider.backgroundColor = UIColor.clearColor()
-//        mediaSlider.elapsedViewColor = UIColor.base255(r: 253, g: 160, b: 79)
-//        mediaSlider.sliderColor = UIColor.base255(r: 252, g: 126, b: 15)
-//        mediaSlider.elapsedTextColor = UIColor.whiteColor()
-//        mediaSlider.remainingTextColor = UIColor.darkGrayColor()
         
-
         loadAudio(false)
     }
     
-    func loadAudio(realPlayer: Bool) {
+    private func loadAudio(realPlayer: Bool) {
 
         if realPlayer {
             do {
-                let audioPlayer = try RealAudioPlayer.load("Endure-Z-Type-Soundrack", type: "mp3", playImmediately: false)
+                let audioPlayer = try RealAudioPlayer.load("SampleAudioFile", type: "mp3", playImmediately: false)
                 mediaSlider.totalTime = audioPlayer.duration
                 mediaSlider.currentTime = 0
                 self.audioPlayer = audioPlayer
@@ -74,50 +61,48 @@ class ViewController: UIViewController {
             mediaSlider.currentTime = 0
             self.audioPlayer = audioPlayer
         }
-
     }
     
     // MARK: IBActions
-    @IBAction func sliderValueChanged(sender: MVMediaSlider) {
+    @IBAction private func sliderValueChanged(sender: MVMediaSlider) {
         
         updatePlayer(currentTime: sender.currentTime ?? 0)
     }
     
-    @IBAction func backTapped(sender: UIButton) {
+    @IBAction private func backTapped(sender: UIButton) {
         let newTime = _currentTime - SeekTimeStep > 0 ? _currentTime - SeekTimeStep : 0
         updatePlayer(currentTime: newTime)
     }
 
-    @IBAction func forwardTapped(sender: UIButton) {
+    @IBAction private func forwardTapped(sender: UIButton) {
         let newTime = _currentTime + SeekTimeStep < _totalTime ? _currentTime + SeekTimeStep : 0
         updatePlayer(currentTime: newTime)
     }
     
-    @IBAction func playTapped(sender: UIButton) {
+    @IBAction private func playTapped(sender: UIButton) {
 
         playing = !playing
     }
     
-    @objc func updateViews(sender: AnyObject) {
+    @objc private func updateViews(sender: AnyObject) {
         
         updateMediaSlider(currentTime: _currentTime)
     }
     
-    func updatePlayer(currentTime currentTime: NSTimeInterval) {
+    private func updateMediaSlider(currentTime currentTime: NSTimeInterval) {
+        mediaSlider.currentTime = currentTime
+    }
+
+    private func updatePlayer(currentTime currentTime: NSTimeInterval) {
         audioPlayer?.currentTime = currentTime
     }
     
-    func updateMediaSlider(currentTime currentTime: NSTimeInterval) {
-        mediaSlider.currentTime = currentTime
-    }
-    
-    var _currentTime: NSTimeInterval {
+    private var _currentTime: NSTimeInterval {
         return audioPlayer?.currentTime ?? 0
     }
     
-    var _totalTime: NSTimeInterval {
+    private var _totalTime: NSTimeInterval {
         return audioPlayer?.duration ?? 0
     }
-
 }
 
