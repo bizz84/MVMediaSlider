@@ -33,7 +33,7 @@ pod 'MVMediaSlider'
 *  Add the auto layout constraints to the new view (recommended values are edge to edge and a height of 25pt).
 *  Hit `CMD+Option+4` to open the view attributes and set the desired properties:
 
-<img src="Screenshots/MVMediaSlider-Designables.png">
+<img src="Screenshots/MVMediaSlider-Designables.png" width="259">
 
 * ```import MVMediaSlider``` in your view controller to use MVMediaSlider as an `@IBOutlet`. 
 * Build and run your app.
@@ -50,7 +50,7 @@ The project includes a demo app showing how to build a simple audio player using
 
 ### Configurable properties
 
-<img src="Screenshots/MVMediaSlider-Designables.png">
+<img src="Screenshots/MVMediaSlider-Designables.png" width="259">
 
 * Elapsed View Color
 * Slider Color
