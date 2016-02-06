@@ -14,7 +14,7 @@ MVMediaSlider is a UIControl subclass inspired by the [Overcast App](https://itu
 
 ## Preview
 
-<img src="Screenshots/MediaPlayer.png">
+<img src="Screenshots/MediaPlayer.png" width="320">
 
 ## Installation
 MVMediaSlider can be installed as a Cocoapod and builds as a Swift framework. To install, include this in your Podfile.
@@ -27,10 +27,14 @@ pod 'MVMediaSlider'
 
 * Run `pod install`, then open the Xcode workspace
 * Add a `UIView` to the desired view controller in IB, and set `MVMediaSlider` as the custom class name:
+
 <img src="Screenshots/MVMediaSlider-Storyboard.png">
+
 *  Add the auto layout constraints to the new view (recommended values are edge to edge and a height of 25pt).
 *  Hit `CMD+Option+4` to open the view attributes and set the desired properties:
+
 <img src="Screenshots/MVMediaSlider-Designables.png">
+
 * ```import MVMediaSlider``` in your view controller to use MVMediaSlider as an `@IBOutlet`. 
 * Build and run your app.
 
@@ -40,9 +44,9 @@ The project includes a demo app showing how to build a simple audio player using
 
 
 ## Features
-- Register to `UIControlEvents.ValueChanged` to handle changes in the playback position (same target/selector method used by `UIControl`/`UISlider`).
-- `@IBDesignable` properties for easier configuration in Interface builder
-- Seamless integration in existing storyboards: Just drag a UIView, set the class type to `MVMediaSlider` and configure the presentation properties as needed.
+* Register to `UIControlEvents.ValueChanged` to handle changes in the playback position (same target/selector method used by `UIControl`/`UISlider`).
+* `@IBDesignable` properties for easier configuration in Interface builder
+* Seamless integration in existing storyboards: Just drag a UIView, set the class type to `MVMediaSlider` and configure the presentation properties as needed.
 
 ### Configurable properties
 
