@@ -46,6 +46,8 @@ pod 'MVMediaSlider'
 ## Sample Code
 The project includes a demo app showing how to build a simple audio player using `MVMediaSlider` to change the playback position.
 
+**NOTE**: The demo app shows how to use size classes to create an adaptive layout that works both in portrait and landscape mode, without using any auto layout code.
+
 
 ## Features
 * Register to `UIControlEvents.ValueChanged` to handle changes in the playback position (same target/selector method used by `UIControl`/`UISlider`).
