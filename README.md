@@ -14,6 +14,10 @@ MVMediaSlider is a UIControl subclass inspired by the [Overcast App](https://itu
 
 ## Preview
 
+<img src="Screenshots/Demo.gif" width="320">
+
+<br/>
+
 <img src="Screenshots/MediaPlayer.png" width="320">
 
 ## Installation
