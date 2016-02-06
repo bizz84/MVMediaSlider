@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="npB-mZ-h8r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="npB-mZ-h8r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--Song-->
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MVMediaSliderDemo" customModuleProvider="target" sceneMemberID="viewController">
@@ -52,9 +52,11 @@
                                 </connections>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HJo-ss-fcg" userLabel="Rewind Button" customClass="SelectableButton" customModule="MVMediaSliderDemo" customModuleProvider="target">
-                                <rect key="frame" x="159" y="365" width="42" height="30"/>
+                                <rect key="frame" x="169" y="357.5" width="42" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Q2I-7j-ITx"/>
+                                    <constraint firstAttribute="height" constant="45" id="Qjh-Xx-V5L"/>
+                                    <constraint firstAttribute="width" constant="42" id="c8S-TL-9QV"/>
                                     <constraint firstAttribute="width" constant="44" id="z3a-vS-9i3"/>
                                 </constraints>
                                 <color key="tintColor" red="0.1137254902" green="0.72549019609999998" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
@@ -79,11 +81,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ma0-FO-H8e" customClass="SelectableButton" customModule="MVMediaSliderDemo" customModuleProvider="target">
-                                <rect key="frame" x="280" y="358" width="40" height="44"/>
+                                <rect key="frame" x="278" y="358" width="44" height="44"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="6W3-vd-vzl"/>
+                                    <constraint firstAttribute="height" constant="44" id="mFr-h7-cxy"/>
                                     <constraint firstAttribute="height" constant="44" id="tjf-ZM-WTj"/>
+                                    <constraint firstAttribute="width" constant="44" id="vt6-1d-euI"/>
                                 </constraints>
                                 <color key="tintColor" red="0.076542689440000006" green="0.68143474500000001" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" image="Play"/>
@@ -108,10 +112,12 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lmC-ax-n6W" userLabel="Forward Button" customClass="SelectableButton" customModule="MVMediaSliderDemo" customModuleProvider="target">
-                                <rect key="frame" x="399" y="365" width="42" height="30"/>
+                                <rect key="frame" x="389" y="357.5" width="42" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="1F1-ye-8B8"/>
+                                    <constraint firstAttribute="width" constant="42" id="4yx-PE-bPn"/>
                                     <constraint firstAttribute="width" constant="44" id="JeV-32-5tK"/>
+                                    <constraint firstAttribute="height" constant="45" id="ael-Gy-vD5"/>
                                 </constraints>
                                 <color key="tintColor" red="0.1137254902" green="0.72549019609999998" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" image="Forward"/>
@@ -154,6 +160,7 @@
                             <constraint firstAttribute="trailing" secondItem="yLH-br-m7E" secondAttribute="trailing" identifier="Cover: Trailing" id="A1N-j4-lRV"/>
                             <constraint firstAttribute="trailing" secondItem="02N-UT-Vnb" secondAttribute="trailing" id="E7e-tU-TEj"/>
                             <constraint firstItem="Ma0-FO-H8e" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="NeT-x9-8SR"/>
+                            <constraint firstItem="Ma0-FO-H8e" firstAttribute="leading" secondItem="HJo-ss-fcg" secondAttribute="trailing" constant="70" id="WCw-QN-GGX"/>
                             <constraint firstItem="02N-UT-Vnb" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="WWw-1O-6na"/>
                             <constraint firstItem="yLH-br-m7E" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" identifier="Cover: CenterX" id="YTj-Hu-oAj"/>
                             <constraint firstItem="yLH-br-m7E" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" constant="-120" id="aI8-6y-7UX"/>
@@ -162,10 +169,10 @@
                             <constraint firstItem="02N-UT-Vnb" firstAttribute="top" secondItem="yLH-br-m7E" secondAttribute="bottom" constant="-1" id="fGu-ZV-i3y"/>
                             <constraint firstItem="yLH-br-m7E" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" identifier="Cover: Top" id="mKC-tH-pXP"/>
                             <constraint firstItem="yLH-br-m7E" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" identifier="Cover: Leading" id="oTT-dM-tO1"/>
-                            <constraint firstItem="HJo-ss-fcg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-120" id="pH7-tn-gVZ"/>
+                            <constraint firstItem="HJo-ss-fcg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-110" id="pH7-tn-gVZ"/>
                             <constraint firstItem="Ma0-FO-H8e" firstAttribute="leading" secondItem="HJo-ss-fcg" secondAttribute="trailing" constant="79" id="quv-5I-9xJ"/>
                             <constraint firstItem="lmC-ax-n6W" firstAttribute="leading" secondItem="Ma0-FO-H8e" secondAttribute="trailing" constant="72" id="tP4-zU-bDk"/>
-                            <constraint firstItem="lmC-ax-n6W" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="120" id="vgy-DS-xYy"/>
+                            <constraint firstItem="lmC-ax-n6W" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="110" id="vgy-DS-xYy"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -174,6 +181,7 @@
                                 <exclude reference="oTT-dM-tO1"/>
                                 <exclude reference="WWw-1O-6na"/>
                                 <exclude reference="axZ-gJ-yqX"/>
+                                <exclude reference="WCw-QN-GGX"/>
                                 <exclude reference="quv-5I-9xJ"/>
                                 <exclude reference="tP4-zU-bDk"/>
                             </mask>
@@ -192,7 +200,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Song" id="Ljz-Pp-X2B"/>
+                    <navigationItem key="navigationItem" id="Ljz-Pp-X2B"/>
                     <connections>
                         <outlet property="mediaSlider" destination="02N-UT-Vnb" id="thG-Uu-9oo"/>
                         <outlet property="playButton" destination="Ma0-FO-H8e" id="sDa-Zq-mpR"/>
@@ -222,10 +230,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Forward" width="42" height="30"/>
+        <image name="Forward" width="42" height="45"/>
         <image name="Pause" width="44" height="44"/>
         <image name="Play" width="40" height="44"/>
-        <image name="Rewind" width="42" height="30"/>
+        <image name="Rewind" width="42" height="45"/>
         <image name="SeasideCover" width="320" height="240"/>
     </resources>
 </document>
