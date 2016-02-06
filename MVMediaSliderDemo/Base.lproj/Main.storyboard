@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -52,27 +53,13 @@
                                 </connections>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HJo-ss-fcg" userLabel="Rewind Button" customClass="SelectableButton" customModule="MVMediaSliderDemo" customModuleProvider="target">
-                                <rect key="frame" x="169" y="357.5" width="42" height="45"/>
+                                <rect key="frame" x="160" y="358" width="60" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="Q2I-7j-ITx"/>
-                                    <constraint firstAttribute="height" constant="45" id="Qjh-Xx-V5L"/>
-                                    <constraint firstAttribute="width" constant="42" id="c8S-TL-9QV"/>
-                                    <constraint firstAttribute="width" constant="44" id="z3a-vS-9i3"/>
+                                    <constraint firstAttribute="height" constant="60" id="Qjh-Xx-V5L"/>
+                                    <constraint firstAttribute="width" constant="60" id="c8S-TL-9QV"/>
                                 </constraints>
                                 <color key="tintColor" red="0.1137254902" green="0.72549019609999998" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" image="Rewind"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="Q2I-7j-ITx"/>
-                                        <exclude reference="z3a-vS-9i3"/>
-                                    </mask>
-                                </variation>
-                                <variation key="widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="Q2I-7j-ITx"/>
-                                        <include reference="z3a-vS-9i3"/>
-                                    </mask>
-                                </variation>
                                 <variation key="widthClass=regular" misplaced="YES">
                                     <rect key="frame" x="263" y="748" width="34" height="30"/>
                                 </variation>
@@ -81,29 +68,15 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ma0-FO-H8e" customClass="SelectableButton" customModule="MVMediaSliderDemo" customModuleProvider="target">
-                                <rect key="frame" x="278" y="358" width="44" height="44"/>
+                                <rect key="frame" x="270" y="358" width="60" height="60"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="44" id="6W3-vd-vzl"/>
-                                    <constraint firstAttribute="height" constant="44" id="mFr-h7-cxy"/>
-                                    <constraint firstAttribute="height" constant="44" id="tjf-ZM-WTj"/>
-                                    <constraint firstAttribute="width" constant="44" id="vt6-1d-euI"/>
+                                    <constraint firstAttribute="height" constant="60" id="mFr-h7-cxy"/>
+                                    <constraint firstAttribute="width" constant="60" id="vt6-1d-euI"/>
                                 </constraints>
                                 <color key="tintColor" red="0.076542689440000006" green="0.68143474500000001" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" image="Play"/>
                                 <state key="selected" image="Pause"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="6W3-vd-vzl"/>
-                                        <exclude reference="tjf-ZM-WTj"/>
-                                    </mask>
-                                </variation>
-                                <variation key="widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="6W3-vd-vzl"/>
-                                        <include reference="tjf-ZM-WTj"/>
-                                    </mask>
-                                </variation>
                                 <variation key="widthClass=regular" misplaced="YES">
                                     <rect key="frame" x="385" y="748" width="30" height="30"/>
                                 </variation>
@@ -112,27 +85,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lmC-ax-n6W" userLabel="Forward Button" customClass="SelectableButton" customModule="MVMediaSliderDemo" customModuleProvider="target">
-                                <rect key="frame" x="389" y="357.5" width="42" height="45"/>
+                                <rect key="frame" x="380" y="358" width="60" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="1F1-ye-8B8"/>
-                                    <constraint firstAttribute="width" constant="42" id="4yx-PE-bPn"/>
-                                    <constraint firstAttribute="width" constant="44" id="JeV-32-5tK"/>
-                                    <constraint firstAttribute="height" constant="45" id="ael-Gy-vD5"/>
+                                    <constraint firstAttribute="width" constant="60" id="4yx-PE-bPn"/>
+                                    <constraint firstAttribute="height" constant="60" id="ael-Gy-vD5"/>
                                 </constraints>
                                 <color key="tintColor" red="0.1137254902" green="0.72549019609999998" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" image="Forward"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="1F1-ye-8B8"/>
-                                        <exclude reference="JeV-32-5tK"/>
-                                    </mask>
-                                </variation>
-                                <variation key="widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="1F1-ye-8B8"/>
-                                        <include reference="JeV-32-5tK"/>
-                                    </mask>
-                                </variation>
                                 <variation key="widthClass=regular" misplaced="YES">
                                     <rect key="frame" x="492" y="748" width="56" height="30"/>
                                 </variation>
@@ -153,47 +112,39 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Ma0-FO-H8e" firstAttribute="top" secondItem="02N-UT-Vnb" secondAttribute="bottom" constant="30" id="4oy-A6-mJX">
-                                <variation key="heightClass=compact" constant="10"/>
+                                <variation key="heightClass=compact" constant="5"/>
                             </constraint>
                             <constraint firstItem="lmC-ax-n6W" firstAttribute="centerY" secondItem="Ma0-FO-H8e" secondAttribute="centerY" id="50g-Rn-yF8"/>
                             <constraint firstItem="02N-UT-Vnb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="9la-DW-BBM"/>
                             <constraint firstAttribute="trailing" secondItem="yLH-br-m7E" secondAttribute="trailing" identifier="Cover: Trailing" id="A1N-j4-lRV"/>
                             <constraint firstAttribute="trailing" secondItem="02N-UT-Vnb" secondAttribute="trailing" id="E7e-tU-TEj"/>
                             <constraint firstItem="Ma0-FO-H8e" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="NeT-x9-8SR"/>
-                            <constraint firstItem="Ma0-FO-H8e" firstAttribute="leading" secondItem="HJo-ss-fcg" secondAttribute="trailing" constant="70" id="WCw-QN-GGX"/>
                             <constraint firstItem="02N-UT-Vnb" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="WWw-1O-6na"/>
                             <constraint firstItem="yLH-br-m7E" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" identifier="Cover: CenterX" id="YTj-Hu-oAj"/>
-                            <constraint firstItem="yLH-br-m7E" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" constant="-120" id="aI8-6y-7UX"/>
-                            <constraint firstItem="02N-UT-Vnb" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="axZ-gJ-yqX"/>
                             <constraint firstItem="HJo-ss-fcg" firstAttribute="centerY" secondItem="Ma0-FO-H8e" secondAttribute="centerY" id="f2H-Q8-7xa"/>
                             <constraint firstItem="02N-UT-Vnb" firstAttribute="top" secondItem="yLH-br-m7E" secondAttribute="bottom" constant="-1" id="fGu-ZV-i3y"/>
                             <constraint firstItem="yLH-br-m7E" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" identifier="Cover: Top" id="mKC-tH-pXP"/>
                             <constraint firstItem="yLH-br-m7E" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" identifier="Cover: Leading" id="oTT-dM-tO1"/>
                             <constraint firstItem="HJo-ss-fcg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-110" id="pH7-tn-gVZ"/>
-                            <constraint firstItem="Ma0-FO-H8e" firstAttribute="leading" secondItem="HJo-ss-fcg" secondAttribute="trailing" constant="79" id="quv-5I-9xJ"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="Ma0-FO-H8e" secondAttribute="bottom" constant="5" id="r5c-7V-R52"/>
                             <constraint firstItem="lmC-ax-n6W" firstAttribute="leading" secondItem="Ma0-FO-H8e" secondAttribute="trailing" constant="72" id="tP4-zU-bDk"/>
                             <constraint firstItem="lmC-ax-n6W" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="110" id="vgy-DS-xYy"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="A1N-j4-lRV"/>
-                                <exclude reference="aI8-6y-7UX"/>
                                 <exclude reference="oTT-dM-tO1"/>
                                 <exclude reference="WWw-1O-6na"/>
-                                <exclude reference="axZ-gJ-yqX"/>
-                                <exclude reference="WCw-QN-GGX"/>
-                                <exclude reference="quv-5I-9xJ"/>
+                                <exclude reference="r5c-7V-R52"/>
                                 <exclude reference="tP4-zU-bDk"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact">
                             <mask key="constraints">
-                                <exclude reference="A1N-j4-lRV"/>
-                                <include reference="aI8-6y-7UX"/>
-                                <exclude reference="oTT-dM-tO1"/>
+                                <include reference="r5c-7V-R52"/>
                             </mask>
                         </variation>
-                        <variation key="heightClass=regular">
+                        <variation key="heightClass=regular-widthClass=compact">
                             <mask key="constraints">
                                 <include reference="A1N-j4-lRV"/>
                                 <include reference="oTT-dM-tO1"/>
