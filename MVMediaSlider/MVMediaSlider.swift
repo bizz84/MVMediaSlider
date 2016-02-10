@@ -209,6 +209,8 @@ extension MVMediaSlider {
     // MARK: UIControl subclassing
     override public func beginTrackingWithTouch(touch: UITouch, withEvent event: UIEvent?) -> Bool {
         
+        self.sendActionsForControlEvents(.TouchDown)
+
         let sliderCenterX = leftLabelHolder.frame.width + elapsedTimeViewWidthConstraint.constant + sliderView.bounds.width / 2
         
         let locationX = touch.locationInView(self).x
@@ -238,6 +240,8 @@ extension MVMediaSlider {
 
     override public func endTrackingWithTouch(touch: UITouch?, withEvent event: UIEvent?) {
         
+        self.sendActionsForControlEvents(.TouchUpInside)
+
         draggingInProgress = false
 
         guard let touch = touch else {
