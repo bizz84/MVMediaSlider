@@ -64,7 +64,7 @@ private extension UIView {
     // MARK: UIControl touch handling variables
     private let DragCaptureDeltaX: CGFloat = 22
     
-    private var draggingInProgress = false
+    public private(set) var draggingInProgress = false
     private var initialDragLocationX: CGFloat = 0
     private var initialSliderConstraintValue: CGFloat = 0
 
