@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'MVMediaSlider'
-  s.version      = '0.0.2'
+  s.version      = '0.0.3'
   s.summary      = 'Custom media slider inspired by the Overcast App'
   s.license      = 'MIT'
   s.homepage     = 'https://github.com/bizz84/MVMediaSlider'
