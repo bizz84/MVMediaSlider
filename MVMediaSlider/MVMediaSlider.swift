@@ -106,42 +106,60 @@ private extension UIView {
             rightLabelHolder?.backgroundColor = self.backgroundColor
         }
     }
-    @IBInspectable public var elapsedViewColor: UIColor! {
-        didSet {
-            leftLabelHolder?.backgroundColor = elapsedViewColor
-            elapsedTimeView?.backgroundColor = elapsedViewColor
-            if let lines = sliderView?.subviews {
-                for line in lines {
-                    line.backgroundColor = elapsedViewColor
-                }
-            }
+    @IBInspectable public var elapsedViewColor: UIColor? {
+        get {
+            return leftLabelHolder?.backgroundColor
+        }
+        set(newElapsedViewColor) {
+            leftLabelHolder?.backgroundColor = newElapsedViewColor
+            elapsedTimeView?.backgroundColor = newElapsedViewColor
+            let _ = sliderView?.subviews.map { $0.backgroundColor = newElapsedViewColor }
         }
     }
-    @IBInspectable public var sliderColor: UIColor! {
-        didSet {
-            sliderView?.backgroundColor = sliderColor
+    @IBInspectable public var sliderColor: UIColor? {
+        get {
+            return sliderView?.backgroundColor
+        }
+        set {
+            sliderView?.backgroundColor = newValue
         }
     }
-    @IBInspectable public var elapsedTextColor: UIColor! {
-        didSet {
-            leftLabel?.textColor = elapsedTextColor ?? UIColor.grayColor()
+    @IBInspectable public var elapsedTextColor: UIColor? {
+        get {
+            return leftLabel?.textColor
+        }
+        set {
+            leftLabel?.textColor = newValue ?? UIColor.grayColor()
         }
     }
-    @IBInspectable public var remainingTextColor: UIColor! {
-        didSet {
-            rightLabel?.textColor = remainingTextColor ?? UIColor.darkGrayColor()
+    @IBInspectable public var remainingTextColor: UIColor? {
+        get {
+            return rightLabel?.textColor
+        }
+        set {
+            rightLabel?.textColor = newValue ?? UIColor.darkGrayColor()
         }
     }
     
     @IBInspectable public var topSeparatorColor: UIColor? {
-        didSet {
-            topSeparatorView?.backgroundColor = topSeparatorColor
+        get {
+            return topSeparatorView?.backgroundColor
+        }
+        set {
+            topSeparatorView?.backgroundColor = newValue
         }
     }
     @IBInspectable public var bottomSeparatorColor: UIColor? {
-        didSet {
-            bottomSeparatorView?.backgroundColor = bottomSeparatorColor
+        get {
+            return bottomSeparatorView?.backgroundColor
         }
+        set {
+            bottomSeparatorView?.backgroundColor = newValue
+        }
+    }
+    
+    public override func prepareForInterfaceBuilder() {
+        super.prepareForInterfaceBuilder()
     }
     
     // IBInspectable should support UIFont: http://www.openradar.me/22835760
