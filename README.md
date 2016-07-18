@@ -21,6 +21,10 @@ MVMediaSlider is a UIControl subclass inspired by the [Overcast App](https://itu
 <img src="https://github.com/bizz84/MVMediaSlider/raw/master/Screenshots/MediaPlayer.png" width="320">
 
 ## Installation
+
+
+### CocoaPods
+
 MVMediaSlider can be installed as a Cocoapod and builds as a Swift framework. To install, include this in your Podfile.
 
 ```
@@ -29,7 +33,20 @@ use_frameworks!
 pod 'MVMediaSlider'
 ```
 
-* Run `pod install`, then open the Xcode workspace
+Run `pod install`, then follow the steps below.
+
+### Carthage
+
+To integrate MVMediaSlider into your Xcode project using [Carthage](https://github.com/Carthage/Carthage), specify it in your Cartfile:
+
+```ogdl
+github "bizz84/MVMediaSlider"
+```
+
+**NOTE**: Please ensure that you have the [latest](https://github.com/Carthage/Carthage/releases) Carthage installed.
+
+### Installation steps
+
 * Add a `UIView` to the desired view controller in IB, and set `MVMediaSlider` as the custom class name:
 
 <img src="https://github.com/bizz84/MVMediaSlider/raw/master/Screenshots/MVMediaSlider-Storyboard.png">
