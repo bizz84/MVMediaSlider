@@ -28,7 +28,7 @@ class FakeAudioPlayer: AudioPlayer {
         if let timer = timer where timer.valid {
             return true
         }
-        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "updateTime:", userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(FakeAudioPlayer.updateTime(_:)), userInfo: nil, repeats: true)
         return true
     }
     
