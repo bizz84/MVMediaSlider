@@ -14,8 +14,8 @@ class SelectableButton: UIButton {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        let defaultImage = self.image(for: UIControlState())?.withRenderingMode(.alwaysTemplate)
-        self.setImage(defaultImage, for: UIControlState())
+        let defaultImage = self.image(for: .normal)?.withRenderingMode(.alwaysTemplate)
+        self.setImage(defaultImage, for: .normal)
         let selectedImage = self.image(for: .selected)?.withRenderingMode(.alwaysTemplate)
         self.setImage(selectedImage, for: .selected)
     }

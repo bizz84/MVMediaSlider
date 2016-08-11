@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         didSet {
             playButton.isSelected = playing
             if (playing) {
-                audioPlayer?.play()
+                let _ = audioPlayer?.play()
                 timer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(ViewController.updateViews(_:)), userInfo: nil, repeats: true)
             }
             else {

@@ -25,7 +25,7 @@ class FakeAudioPlayer: AudioPlayer {
     
     func play() -> Bool {
 
-        if let timer = timer where timer.isValid {
+        if let timer = timer, timer.isValid {
             return true
         }
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(FakeAudioPlayer.updateTime(_:)), userInfo: nil, repeats: true)
