@@ -10,16 +10,16 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 import UIKit
 
-private extension NSDateComponentsFormatter {
+private extension DateComponentsFormatter {
     
     // http://stackoverflow.com/questions/4933075/nstimeinterval-to-hhmmss
-    class func string(timeInterval timeInterval: NSTimeInterval, prefix: String = "", fallback: String = "0:00") -> String {
+    class func string(timeInterval: TimeInterval, prefix: String = "", fallback: String = "0:00") -> String {
         
-        let formatter = NSDateComponentsFormatter()
-        formatter.zeroFormattingBehavior = .Pad
-        formatter.allowedUnits = timeInterval >= 3600 ? [.Hour, .Minute, .Second] : [.Minute, .Second]
+        let formatter = DateComponentsFormatter()
+        formatter.zeroFormattingBehavior = .pad
+        formatter.allowedUnits = timeInterval >= 3600 ? [.hour, .minute, .second] : [.minute, .second]
         let minusString = timeInterval >= 1.0 ? prefix : ""
-        return minusString + (formatter.stringFromTimeInterval(timeInterval) ?? fallback)
+        return minusString + (formatter.string(from: timeInterval) ?? fallback)
     }
 }
 
@@ -31,16 +31,16 @@ private extension UIView {
             self.translatesAutoresizingMaskIntoConstraints = false
             
             superview.addConstraints([
-                makeEqualityConstraint(attribute: .Left, toView: superview),
-                makeEqualityConstraint(attribute: .Top, toView: superview),
-                makeEqualityConstraint(attribute: .Right, toView: superview),
-                makeEqualityConstraint(attribute: .Bottom, toView: superview)
+                makeEqualityConstraint(attribute: .left, toView: superview),
+                makeEqualityConstraint(attribute: .top, toView: superview),
+                makeEqualityConstraint(attribute: .right, toView: superview),
+                makeEqualityConstraint(attribute: .bottom, toView: superview)
             ])
         }
     }
-    func makeEqualityConstraint(attribute attribute: NSLayoutAttribute, toView view: UIView) -> NSLayoutConstraint {
+    func makeEqualityConstraint(attribute: NSLayoutAttribute, toView view: UIView) -> NSLayoutConstraint {
 
-        return NSLayoutConstraint(item: self, attribute: attribute, relatedBy: .Equal,
+        return NSLayoutConstraint(item: self, attribute: attribute, relatedBy: .equal,
             toItem: view, attribute: attribute, multiplier: 1, constant: 0)
     }
 }
@@ -74,9 +74,9 @@ private extension UIView {
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        let bundle = NSBundle(forClass: MVMediaSlider.self)
+        let bundle = Bundle(for: MVMediaSlider.self)
             
-        if let view = bundle.loadNibNamed("MVMediaSlider", owner: self, options: nil).first as? UIView {
+        if let view = bundle.loadNibNamed("MVMediaSlider", owner: self, options: nil)?.first as? UIView {
             
             self.addSubview(view)
             
@@ -94,12 +94,12 @@ private extension UIView {
     
     private func setDefaultValues() {
         
-        elapsedViewColor = UIColor.grayColor()
-        sliderColor = UIColor.darkGrayColor()
-        elapsedTextColor = UIColor.whiteColor()
-        remainingTextColor = UIColor.darkGrayColor()
-        topSeparatorColor = UIColor.grayColor()
-        bottomSeparatorColor = UIColor.grayColor()
+        elapsedViewColor = UIColor.gray
+        sliderColor = UIColor.darkGray
+        elapsedTextColor = UIColor.white
+        remainingTextColor = UIColor.darkGray
+        topSeparatorColor = UIColor.gray
+        bottomSeparatorColor = UIColor.gray
     }
 
     // MARK: styling
@@ -131,7 +131,7 @@ private extension UIView {
             return leftLabel?.textColor
         }
         set {
-            leftLabel?.textColor = newValue ?? UIColor.grayColor()
+            leftLabel?.textColor = newValue ?? UIColor.gray
         }
     }
     @IBInspectable public var remainingTextColor: UIColor? {
@@ -139,7 +139,7 @@ private extension UIView {
             return rightLabel?.textColor
         }
         set {
-            rightLabel?.textColor = newValue ?? UIColor.darkGrayColor()
+            rightLabel?.textColor = newValue ?? UIColor.darkGray
         }
     }
     
@@ -174,12 +174,12 @@ private extension UIView {
     }
     
     // MARK: time management
-    public var totalTime: NSTimeInterval? {
+    public var totalTime: TimeInterval? {
         didSet {
             updateView(currentTime: _currentTime, totalTime: _totalTime)
         }
     }
-    public var currentTime: NSTimeInterval? {
+    public var currentTime: TimeInterval? {
         didSet {
             if !draggingInProgress {
                 let currentTime = min(_currentTime, _totalTime)
@@ -189,11 +189,11 @@ private extension UIView {
     }
     
     // MARK: internal methods
-    private var _totalTime: NSTimeInterval {
+    private var _totalTime: TimeInterval {
         return totalTime ?? 0
     }
     
-    private var _currentTime: NSTimeInterval {
+    private var _currentTime: TimeInterval {
         return currentTime ?? 0
     }
     
@@ -201,23 +201,23 @@ private extension UIView {
         return self.frame.width - leftLabelHolder.frame.width - rightLabelHolder.frame.width - sliderView.frame.width
     }
     
-    private func updateView(currentTime currentTime: NSTimeInterval, totalTime: NSTimeInterval) {
+    private func updateView(currentTime: TimeInterval, totalTime: TimeInterval) {
         
         let normalizedTime = totalTime > 0 ? currentTime / totalTime : 0
         elapsedTimeViewWidthConstraint?.constant = CGFloat(normalizedTime) * availableSliderWidth
         
-        leftLabel?.text = NSDateComponentsFormatter.string(timeInterval: currentTime)
+        leftLabel?.text = DateComponentsFormatter.string(timeInterval: currentTime)
         
         let remainingTime = totalTime - currentTime
-        rightLabel?.text = NSDateComponentsFormatter.string(timeInterval: remainingTime, prefix: "-")
+        rightLabel?.text = DateComponentsFormatter.string(timeInterval: remainingTime, prefix: "-")
     }
 
     // MARK: trait collection
-    override public func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+    override public func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         
         if draggingInProgress {
-            cancelTrackingWithEvent(nil)
+            cancelTracking(with: nil)
             draggingInProgress = false
         }
         updateView(currentTime: _currentTime, totalTime: _totalTime)
@@ -227,13 +227,13 @@ private extension UIView {
 extension MVMediaSlider {
     
     // MARK: UIControl subclassing
-    override public func beginTrackingWithTouch(touch: UITouch, withEvent event: UIEvent?) -> Bool {
+    override public func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         
-        self.sendActionsForControlEvents(.TouchDown)
+        self.sendActions(for: .touchDown)
 
         let sliderCenterX = leftLabelHolder.frame.width + elapsedTimeViewWidthConstraint.constant + sliderView.bounds.width / 2
         
-        let locationX = touch.locationInView(self).x
+        let locationX = touch.location(in: self).x
         
         let beginTracking = locationX > sliderCenterX - DragCaptureDeltaX && locationX < sliderCenterX + DragCaptureDeltaX
         if beginTracking {
@@ -243,7 +243,7 @@ extension MVMediaSlider {
         return beginTracking
     }
     
-    override public func continueTrackingWithTouch(touch: UITouch, withEvent event: UIEvent?) -> Bool {
+    override public func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         
         if !draggingInProgress {
             draggingInProgress = true
@@ -251,16 +251,16 @@ extension MVMediaSlider {
         
         let newValue = sliderValue(touch)
         
-        let seekTime = NSTimeInterval(newValue / availableSliderWidth) * _totalTime
+        let seekTime = TimeInterval(newValue / availableSliderWidth) * _totalTime
         
         updateView(currentTime: seekTime, totalTime: _totalTime)
         
         return true
     }
 
-    override public func endTrackingWithTouch(touch: UITouch?, withEvent event: UIEvent?) {
+    override public func endTracking(_ touch: UITouch?, with event: UIEvent?) {
         
-        self.sendActionsForControlEvents(.TouchUpInside)
+        self.sendActions(for: .touchUpInside)
 
         draggingInProgress = false
 
@@ -271,14 +271,14 @@ extension MVMediaSlider {
         
         let newValue = sliderValue(touch)
         
-        currentTime = NSTimeInterval(newValue / availableSliderWidth) * _totalTime
+        currentTime = TimeInterval(newValue / availableSliderWidth) * _totalTime
         
-        self.sendActionsForControlEvents(.ValueChanged)
+        self.sendActions(for: .valueChanged)
     }
     
-    private func sliderValue(touch: UITouch) -> CGFloat {
+    private func sliderValue(_ touch: UITouch) -> CGFloat {
         
-        let locationX = touch.locationInView(self).x
+        let locationX = touch.location(in: self).x
         
         let deltaX = locationX - initialDragLocationX
         

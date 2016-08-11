@@ -12,9 +12,9 @@ import UIKit
 
 protocol AudioPlayer {
 
-    var duration: NSTimeInterval { get }
+    var duration: TimeInterval { get }
     
-    var currentTime: NSTimeInterval { get set }
+    var currentTime: TimeInterval { get set }
     
     func play() -> Bool
     

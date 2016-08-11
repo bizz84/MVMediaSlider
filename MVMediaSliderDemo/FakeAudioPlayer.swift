@@ -12,23 +12,23 @@ import UIKit
 
 class FakeAudioPlayer: AudioPlayer {
 
-    var timer: NSTimer?
+    var timer: Timer?
 
     init() {
         currentTime = 0
     }
-    var duration: NSTimeInterval {
+    var duration: TimeInterval {
         return 115.0
     }
     
-    var currentTime: NSTimeInterval
+    var currentTime: TimeInterval
     
     func play() -> Bool {
 
-        if let timer = timer where timer.valid {
+        if let timer = timer where timer.isValid {
             return true
         }
-        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(FakeAudioPlayer.updateTime(_:)), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(FakeAudioPlayer.updateTime(_:)), userInfo: nil, repeats: true)
         return true
     }
     
@@ -37,7 +37,7 @@ class FakeAudioPlayer: AudioPlayer {
         timer?.invalidate()
     }
     
-    @objc func updateTime(sender: AnyObject) {
+    @objc func updateTime(_ sender: AnyObject) {
         currentTime = currentTime + 1.0 > duration ? 0 : currentTime + 1
     }
 

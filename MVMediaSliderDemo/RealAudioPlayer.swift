@@ -12,9 +12,9 @@ import UIKit
 import AudioToolbox
 import AVFoundation
 
-enum AudioPlayerCreateError: ErrorType {
-    case ResourceNotFound(resourceName: String, type: String)
-    case CreateError(error: ErrorType)
+enum AudioPlayerCreateError: Error {
+    case resourceNotFound(resourceName: String, type: String)
+    case createError(error: Error)
     
 }
 
@@ -22,21 +22,21 @@ class RealAudioPlayer: NSObject, AudioPlayer, AVAudioPlayerDelegate {
 
     let audioPlayer: AVAudioPlayer
     
-    class func load(resourceName: String, type: String, playImmediately: Bool) throws -> AudioPlayer {
+    class func load(_ resourceName: String, type: String, playImmediately: Bool) throws -> AudioPlayer {
         
-        if let resourcePath = NSBundle.mainBundle().pathForResource(resourceName, ofType: type) {
-            let fileURL = NSURL(fileURLWithPath: resourcePath)
+        if let resourcePath = Bundle.main.path(forResource: resourceName, ofType: type) {
+            let fileURL = URL(fileURLWithPath: resourcePath)
            
             do {
-                let audioPlayer = try AVAudioPlayer(contentsOfURL: fileURL)
+                let audioPlayer = try AVAudioPlayer(contentsOf: fileURL)
                 return RealAudioPlayer(audioPlayer: audioPlayer, playImmediately: playImmediately)
             }
             catch (let error) {
-                throw AudioPlayerCreateError.CreateError(error: error)
+                throw AudioPlayerCreateError.createError(error: error)
             }
         }
         else {
-            throw AudioPlayerCreateError.ResourceNotFound(resourceName: resourceName, type: type)
+            throw AudioPlayerCreateError.resourceNotFound(resourceName: resourceName, type: type)
         }
     }
     
@@ -52,11 +52,11 @@ class RealAudioPlayer: NSObject, AudioPlayer, AVAudioPlayerDelegate {
         }
     }
     
-    var duration: NSTimeInterval {
+    var duration: TimeInterval {
         return audioPlayer.duration
     }
     
-    var currentTime: NSTimeInterval {
+    var currentTime: TimeInterval {
         get {
             return audioPlayer.currentTime
         }
@@ -74,13 +74,13 @@ class RealAudioPlayer: NSObject, AudioPlayer, AVAudioPlayerDelegate {
     }
     
     // MARK: AVAudioPlayerDelegate
-    func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         
         player.stop()
         player.prepareToPlay()
     }
     
-    func audioPlayerDecodeErrorDidOccur(player: AVAudioPlayer, error: NSError?) {
+    func audioPlayerDecodeErrorDidOccur(_ player: AVAudioPlayer, error: Error?) {
         
     }
 

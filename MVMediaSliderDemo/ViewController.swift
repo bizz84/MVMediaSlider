@@ -15,7 +15,7 @@ class ViewController: UIViewController {
 
     private let SeekTimeStep = 10.0
     
-    private var timer: NSTimer?
+    private var timer: Timer?
     
     private var audioPlayer: AudioPlayer?
     
@@ -25,10 +25,10 @@ class ViewController: UIViewController {
 
     var playing: Bool = false {
         didSet {
-            playButton.selected = playing
+            playButton.isSelected = playing
             if (playing) {
                 audioPlayer?.play()
-                timer = NSTimer.scheduledTimerWithTimeInterval(0.3, target: self, selector: #selector(ViewController.updateViews(_:)), userInfo: nil, repeats: true)
+                timer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(ViewController.updateViews(_:)), userInfo: nil, repeats: true)
             }
             else {
                 audioPlayer?.pause()
@@ -45,7 +45,7 @@ class ViewController: UIViewController {
         loadAudio(false)
     }
     
-    private func loadAudio(realPlayer: Bool) {
+    private func loadAudio(_ realPlayer: Bool) {
 
         if realPlayer {
             do {
@@ -68,44 +68,44 @@ class ViewController: UIViewController {
     }
     
     // MARK: IBActions
-    @IBAction private func sliderValueChanged(sender: MVMediaSlider) {
+    @IBAction private func sliderValueChanged(_ sender: MVMediaSlider) {
         
         updatePlayer(currentTime: sender.currentTime ?? 0)
     }
     
-    @IBAction private func backTapped(sender: UIButton) {
+    @IBAction private func backTapped(_ sender: UIButton) {
         let newTime = _currentTime - SeekTimeStep > 0 ? _currentTime - SeekTimeStep : 0
         updatePlayer(currentTime: newTime)
     }
 
-    @IBAction private func forwardTapped(sender: UIButton) {
+    @IBAction private func forwardTapped(_ sender: UIButton) {
         let newTime = _currentTime + SeekTimeStep < _totalTime ? _currentTime + SeekTimeStep : 0
         updatePlayer(currentTime: newTime)
     }
     
-    @IBAction private func playTapped(sender: UIButton) {
+    @IBAction private func playTapped(_ sender: UIButton) {
 
         playing = !playing
     }
     
-    @objc private func updateViews(sender: AnyObject) {
+    @objc private func updateViews(_ sender: AnyObject) {
         
         updateMediaSlider(currentTime: _currentTime)
     }
     
-    private func updateMediaSlider(currentTime currentTime: NSTimeInterval) {
+    private func updateMediaSlider(currentTime: TimeInterval) {
         mediaSlider.currentTime = currentTime
     }
 
-    private func updatePlayer(currentTime currentTime: NSTimeInterval) {
+    private func updatePlayer(currentTime: TimeInterval) {
         audioPlayer?.currentTime = currentTime
     }
     
-    private var _currentTime: NSTimeInterval {
+    private var _currentTime: TimeInterval {
         return audioPlayer?.currentTime ?? 0
     }
     
-    private var _totalTime: NSTimeInterval {
+    private var _totalTime: TimeInterval {
         return audioPlayer?.duration ?? 0
     }
 }
