@@ -24,6 +24,13 @@
             <rect key="frame" x="0.0" y="0.0" width="300" height="25"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5VR-4y-WAH">
+                    <rect key="frame" x="40" y="0.0" width="100" height="25"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="Hl1-Om-olh"/>
+                    </constraints>
+                </view>
                 <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ot6-VD-NwY" userLabel="Left Label Holder">
                     <rect key="frame" x="0.0" y="0.0" width="40" height="25"/>
                     <subviews>
@@ -57,13 +64,6 @@
                         <constraint firstAttribute="trailing" secondItem="vcX-6T-2ne" secondAttribute="trailing" constant="4" identifier="Right Label: Trailing" id="H2v-Ew-Fvt"/>
                         <constraint firstItem="vcX-6T-2ne" firstAttribute="centerY" secondItem="6lx-dp-5I2" secondAttribute="centerY" identifier="Right Label: CenterY" id="SV3-zf-Vgr"/>
                         <constraint firstAttribute="width" constant="40" identifier="Right Label: Width" id="Ulc-ml-U99"/>
-                    </constraints>
-                </view>
-                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5VR-4y-WAH">
-                    <rect key="frame" x="40" y="0.0" width="100" height="25"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="100" id="Hl1-Om-olh"/>
                     </constraints>
                 </view>
                 <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vfI-Ao-nVQ">
