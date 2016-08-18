@@ -45,30 +45,30 @@ private extension UIView {
     }
 }
 
-@IBDesignable public class MVMediaSlider: UIControl {
+@IBDesignable open class MVMediaSlider: UIControl {
 
     // MARK: IBOutlets
-    @IBOutlet private var leftLabelHolder: UIView!
-    @IBOutlet private var leftLabel: UILabel!
+    @IBOutlet fileprivate var leftLabelHolder: UIView!
+    @IBOutlet fileprivate var leftLabel: UILabel!
 
-    @IBOutlet private var rightLabelHolder: UIView!
-    @IBOutlet private var rightLabel: UILabel!
+    @IBOutlet fileprivate var rightLabelHolder: UIView!
+    @IBOutlet fileprivate var rightLabel: UILabel!
     
-    @IBOutlet private var elapsedTimeView: UIView!
-    @IBOutlet private var sliderView: UIView!
+    @IBOutlet fileprivate var elapsedTimeView: UIView!
+    @IBOutlet fileprivate var sliderView: UIView!
     
-    @IBOutlet private var elapsedTimeViewWidthConstraint: NSLayoutConstraint!
-    @IBOutlet private var sliderWidthConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate var elapsedTimeViewWidthConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate var sliderWidthConstraint: NSLayoutConstraint!
 
-    @IBOutlet private var topSeparatorView: UIView!
-    @IBOutlet private var bottomSeparatorView: UIView!
+    @IBOutlet fileprivate var topSeparatorView: UIView!
+    @IBOutlet fileprivate var bottomSeparatorView: UIView!
 
     // MARK: UIControl touch handling variables
-    private let DragCaptureDeltaX: CGFloat = 22
+    fileprivate let DragCaptureDeltaX: CGFloat = 22
     
-    public private(set) var draggingInProgress = false
-    private var initialDragLocationX: CGFloat = 0
-    private var initialSliderConstraintValue: CGFloat = 0
+    open fileprivate(set) var draggingInProgress = false
+    fileprivate var initialDragLocationX: CGFloat = 0
+    fileprivate var initialSliderConstraintValue: CGFloat = 0
 
     // MARK: init
     required public init?(coder aDecoder: NSCoder) {
@@ -92,7 +92,7 @@ private extension UIView {
         setDefaultValues()
     }
     
-    private func setDefaultValues() {
+    fileprivate func setDefaultValues() {
         
         elapsedViewColor = UIColor.gray
         sliderColor = UIColor.darkGray
@@ -103,12 +103,12 @@ private extension UIView {
     }
 
     // MARK: styling
-    override public var backgroundColor: UIColor! {
+    override open var backgroundColor: UIColor! {
         didSet {
             rightLabelHolder?.backgroundColor = self.backgroundColor
         }
     }
-    @IBInspectable public var elapsedViewColor: UIColor? {
+    @IBInspectable open var elapsedViewColor: UIColor? {
         get {
             return leftLabelHolder?.backgroundColor
         }
@@ -118,7 +118,7 @@ private extension UIView {
             let _ = sliderView?.subviews.map { $0.backgroundColor = newElapsedViewColor }
         }
     }
-    @IBInspectable public var sliderColor: UIColor? {
+    @IBInspectable open var sliderColor: UIColor? {
         get {
             return sliderView?.backgroundColor
         }
@@ -126,7 +126,7 @@ private extension UIView {
             sliderView?.backgroundColor = newValue
         }
     }
-    @IBInspectable public var elapsedTextColor: UIColor? {
+    @IBInspectable open var elapsedTextColor: UIColor? {
         get {
             return leftLabel?.textColor
         }
@@ -134,7 +134,7 @@ private extension UIView {
             leftLabel?.textColor = newValue ?? UIColor.gray
         }
     }
-    @IBInspectable public var remainingTextColor: UIColor? {
+    @IBInspectable open var remainingTextColor: UIColor? {
         get {
             return rightLabel?.textColor
         }
@@ -143,7 +143,7 @@ private extension UIView {
         }
     }
     
-    @IBInspectable public var topSeparatorColor: UIColor? {
+    @IBInspectable open var topSeparatorColor: UIColor? {
         get {
             return topSeparatorView?.backgroundColor
         }
@@ -151,7 +151,7 @@ private extension UIView {
             topSeparatorView?.backgroundColor = newValue
         }
     }
-    @IBInspectable public var bottomSeparatorColor: UIColor? {
+    @IBInspectable open var bottomSeparatorColor: UIColor? {
         get {
             return bottomSeparatorView?.backgroundColor
         }
@@ -160,13 +160,13 @@ private extension UIView {
         }
     }
     
-    public override func prepareForInterfaceBuilder() {
+    open override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
     }
     
     // IBInspectable should support UIFont: http://www.openradar.me/22835760
     // @IBInspectable
-    public var timersFont: UIFont! {
+    open var timersFont: UIFont! {
         didSet {
             leftLabel?.font = timersFont
             rightLabel?.font = timersFont
@@ -174,12 +174,12 @@ private extension UIView {
     }
     
     // MARK: time management
-    public var totalTime: TimeInterval? {
+    open var totalTime: TimeInterval? {
         didSet {
             updateView(currentTime: _currentTime, totalTime: _totalTime)
         }
     }
-    public var currentTime: TimeInterval? {
+    open var currentTime: TimeInterval? {
         didSet {
             if !draggingInProgress {
                 let currentTime = min(_currentTime, _totalTime)
@@ -189,19 +189,19 @@ private extension UIView {
     }
     
     // MARK: internal methods
-    private var _totalTime: TimeInterval {
+    fileprivate var _totalTime: TimeInterval {
         return totalTime ?? 0
     }
     
-    private var _currentTime: TimeInterval {
+    fileprivate var _currentTime: TimeInterval {
         return currentTime ?? 0
     }
     
-    private var availableSliderWidth: CGFloat {
+    fileprivate var availableSliderWidth: CGFloat {
         return self.frame.width - leftLabelHolder.frame.width - rightLabelHolder.frame.width - sliderView.frame.width
     }
     
-    private func updateView(currentTime: TimeInterval, totalTime: TimeInterval) {
+    fileprivate func updateView(currentTime: TimeInterval, totalTime: TimeInterval) {
         
         let normalizedTime = totalTime > 0 ? currentTime / totalTime : 0
         elapsedTimeViewWidthConstraint?.constant = CGFloat(normalizedTime) * availableSliderWidth
@@ -213,7 +213,7 @@ private extension UIView {
     }
 
     // MARK: trait collection
-    override public func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    override open func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         
         if draggingInProgress {
@@ -227,7 +227,7 @@ private extension UIView {
 extension MVMediaSlider {
     
     // MARK: UIControl subclassing
-    override public func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+    override open func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         
         self.sendActions(for: .touchDown)
 
@@ -243,7 +243,7 @@ extension MVMediaSlider {
         return beginTracking
     }
     
-    override public func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+    override open func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         
         if !draggingInProgress {
             draggingInProgress = true
@@ -258,7 +258,7 @@ extension MVMediaSlider {
         return true
     }
 
-    override public func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+    override open func endTracking(_ touch: UITouch?, with event: UIEvent?) {
         
         self.sendActions(for: .touchUpInside)
 
@@ -276,7 +276,7 @@ extension MVMediaSlider {
         self.sendActions(for: .valueChanged)
     }
     
-    private func sliderValue(_ touch: UITouch) -> CGFloat {
+    fileprivate func sliderValue(_ touch: UITouch) -> CGFloat {
         
         let locationX = touch.location(in: self).x
         
